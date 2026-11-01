@@ -55,6 +55,15 @@ Pasos para montar el proyecto desde cero. Marca con ✅ lo que ya hiciste.
    <p>El código vence en una hora. Si tú no lo pediste, ignora este correo.</p>
    ```
    Asunto: `Tu código para entrar a Fiel y Verdadero`.
+6. Authentication → Sign In / Providers → Email: **Confirm email** activado, longitud mínima de contraseña 8, requisito de letras y números.
+7. Authentication → Emails → plantilla **Reset password** (recuperar contraseña) con el código:
+   ```html
+   <h2>Recupera tu contraseña</h2>
+   <p>Usa este código en <strong>Fiel y Verdadero</strong> para elegir una contraseña nueva:</p>
+   <p style="font-size:32px;font-weight:bold;letter-spacing:6px;">{{ .Token }}</p>
+   <p>Si tú no lo pediste, ignora este correo.</p>
+   ```
+   Asunto: `Recupera tu contraseña de Fiel y Verdadero`. La plantilla **Magic link** queda sin uso.
 
 ## 6. Facebook Login
 

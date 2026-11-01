@@ -6,7 +6,7 @@ Biblioteca gratuita de sermones en español (escribir, publicar, compartir, PDF)
 - **Ramas:** trabajar siempre en `fiel` (local y remota); `main` = producción, solo por PR desde `fiel`. Nunca push directo a `main`. Local usa el proyecto Supabase `fiel-dev`, no producción.
 - **Front/SSR:** Next.js 16 App Router + TS + Tailwind 4 → Vercel Hobby (deploy a producción en push a `main`; otras ramas = Preview).
 - **Datos/Auth/Storage:** Supabase Free (Postgres + RLS). El navegador consulta Supabase directo; sin backend propio.
-- **Login:** código OTP por correo (Resend vía SMTP en Supabase) + Facebook. Sin Google, sin contraseñas, sin Auth UI.
+- **Login:** correo + contraseña (Supabase Auth); código por correo (Resend vía SMTP) solo para verificar el registro y recuperar la contraseña; Facebook después. Sin Google, sin Auth UI.
 - **PDF:** `@react-pdf/renderer` en el cliente (import dinámico). Cero cómputo de servidor.
 - **Dominio:** Namecheap → Vercel. Env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_CONTACT_EMAIL`.
 - **Migraciones:** `supabase/migrations/`, `npx supabase db push --linked`. Nunca editar una aplicada; crear otra.

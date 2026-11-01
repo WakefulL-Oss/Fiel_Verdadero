@@ -1,8 +1,15 @@
+import { Suspense } from "react";
 import { Footer } from "@/components/Footer";
+import { BotonSesion } from "@/features/auth/components/BotonSesion";
 
 export default function Home() {
   return (
     <>
+      <header className="flex justify-end px-6 py-4">
+        <Suspense>
+          <BotonSesion />
+        </Suspense>
+      </header>
       <main className="flex flex-1 flex-col items-center justify-center px-6 py-24 text-center">
         <p className="mb-4 text-sm uppercase tracking-[0.3em] text-muted">
           Biblioteca de sermones

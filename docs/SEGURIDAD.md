@@ -2,7 +2,11 @@
 
 ## Sesión
 
-- Login por código de 6 dígitos al correo (Supabase Auth). Facebook queda pendiente de verificación en Meta.
+- Login con correo y contraseña (Supabase Auth, hash bcrypt; la app nunca guarda contraseñas). El código por correo (6–8 dígitos) se usa solo para verificar el registro y para recuperar la contraseña. Facebook queda pendiente de verificación en Meta.
+- Contraseñas: 8–72 caracteres con letra y número (zod en `schema.ts` y mínimo en Supabase). Se permite pegar desde gestores de contraseñas.
+- Mensajes genéricos: "Correo o contraseña incorrectos"; la recuperación responde igual exista o no el correo.
+- Con contraseñas, el CAPTCHA (Turnstile) en registro, login y recuperación es **obligatorio** antes del lanzamiento (credential stuffing).
+- Opcional posterior: comprobar contraseñas filtradas (Have I Been Pwned por prefijo de hash); implica mencionarlo en `/privacidad`.
 - Cookies de sesión con `@supabase/ssr`. `src/proxy.ts` las refresca en cada petición que tenga cookie `sb-*`.
 - Decisiones de acceso en servidor: `supabase.auth.getUser()`. Nunca confiar en `getSession()` ni en datos del cliente.
 - Redirecciones (`next`, `/auth/callback`): solo rutas relativas propias (`src/lib/ruta-segura.ts`), contra *open redirect*.
@@ -10,7 +14,7 @@
 
 ### Configuración en Supabase (cada proyecto, prod y dev)
 
-- Authentication → Providers → Email: expiración del código **600 s** (10 min).
+- Authentication → Providers → Email: **Confirm email** activado, longitud mínima de contraseña **8** con letras y números, expiración del código **600 s** (10 min).
 - Authentication → Sessions/Refresh tokens: rotación activada (por defecto).
 - Authentication → Rate Limits: dejar activos los límites de envío y verificación por IP.
 - Authentication → Attack Protection: activar CAPTCHA (Turnstile, gratis) antes del lanzamiento público para evitar bombardeo de correos.
