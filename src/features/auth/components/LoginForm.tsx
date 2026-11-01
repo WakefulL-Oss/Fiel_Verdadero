@@ -44,9 +44,9 @@ export function LoginForm({ next }: { next?: string }) {
         name="codigo"
         inputMode="numeric"
         autoComplete="one-time-code"
-        pattern="\d{6}"
-        maxLength={6}
-        placeholder="000000"
+        pattern="\d{6,8}"
+        maxLength={8}
+        placeholder="00000000"
         required
         autoFocus
         className={`${campo} text-center text-xl tracking-[0.4em]`}

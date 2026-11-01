@@ -5,5 +5,5 @@ export const correoSchema = z.object({
 });
 
 export const codigoSchema = correoSchema.extend({
-  codigo: z.string().trim().regex(/^\d{6}$/, "El código tiene 6 dígitos"),
+  codigo: z.string().trim().regex(/^\d{6,8}$/, "Código no válido"),
 });
