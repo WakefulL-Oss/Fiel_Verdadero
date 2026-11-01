@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fiel y Verdadero
 
-## Getting Started
+Biblioteca gratuita de sermones en español: escribe, publica, comparte y descarga sermones en PDF. Proyecto sin fines comerciales, con costo de infraestructura de $0.
 
-First, run the development server:
+## Stack
+
+| Capa | Tecnología |
+|---|---|
+| Frontend / SSR | Next.js 16 (App Router) + TypeScript |
+| Estilos | Tailwind CSS 4 · Cormorant Garamond + Roboto |
+| Base de datos, Auth, Storage | Supabase (Postgres, plan Free) |
+| Hosting | Vercel (plan Hobby) |
+| Correo (códigos de acceso) | Resend (plan Free) vía SMTP en Supabase |
+| Inicio de sesión | Código por correo + Facebook |
+| PDF | `@react-pdf/renderer`, generado en el navegador (pendiente) |
+
+## Ejecutar en local
 
 ```bash
+npm install
+cp .env.example .env.local   # en Windows CMD: copy .env.example .env.local
+# llena NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre http://localhost:3000. Otros comandos: `npm run build`, `npm run lint`, `npx tsc --noEmit`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Base de datos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Las migraciones viven en `supabase/migrations/`. Para aplicarlas al proyecto enlazado:
 
-## Learn More
+```bash
+npx supabase login
+npx supabase link --project-ref <REF-DE-20-LETRAS>
+npx supabase db push --linked
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Documentación
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Estado del proyecto](docs/ESTADO.md)
+- [Arquitectura](docs/ARQUITECTURA.md)
+- [Guía de configuración](docs/GUIA-CONFIGURACION.md)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Seguridad
 
-## Deploy on Vercel
+`.env.local` está en `.gitignore`. Nunca subas la `service_role key`, la contraseña de la base de datos, el App Secret de Facebook ni la API key de Resend.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Licencia
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[PolyForm Noncommercial 1.0.0](LICENSE) con aviso bilingüe (ver [NOTICE.md](NOTICE.md)). Uso gratuito y no comercial; prohibido vender, cobrar o monetizar. Nombre y marca reservados.
