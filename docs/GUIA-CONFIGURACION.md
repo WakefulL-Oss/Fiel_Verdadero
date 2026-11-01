@@ -22,7 +22,7 @@ Pasos para montar el proyecto desde cero. Marca con ✅ lo que ya hiciste.
 5. Authentication → Sign In / Providers → Email: activado.
 6. Authentication → URL Configuration:
    - Site URL: `https://tudominio.com`
-   - Redirect URLs: `https://tudominio.com/**`, `https://*.vercel.app/**`, `http://localhost:3000/**`
+   - Redirect URLs (producción): solo `https://tudominio.com/**`. Localhost y `*.vercel.app` van en `fiel-dev` (sección 9).
 
 ## 3. GitHub y Vercel
 
@@ -30,7 +30,7 @@ Pasos para montar el proyecto desde cero. Marca con ✅ lo que ya hiciste.
 2. vercel.com → Add New Project → importa el repo (Next.js, raíz `./`).
 3. Variables de entorno: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_CONTACT_EMAIL`.
 4. Las variables `NEXT_PUBLIC_*` son públicas por diseño (van al navegador). Los secretos (service_role, contraseña de BD, App Secret de Facebook, API key de Resend) nunca llevan ese prefijo.
-5. Cada push a `main` despliega solo. Cambiar una variable requiere **Redeploy**.
+5. Cada push a `main` despliega a producción; las demás ramas generan solo un Preview. Cambiar una variable requiere **Redeploy**.
 
 ## 4. Dominio (Namecheap → Vercel)
 
@@ -82,6 +82,18 @@ update perfiles set rol = 'admin' where id = '<tu-uuid-de-auth.users>';
 
 ## 8. Mantenimiento
 
-- **Keep-alive:** Supabase Free pausa el proyecto tras ~7 días sin actividad (pendiente un cron en GitHub Actions).
-- **Backups:** el plan Free no los incluye; haz un `pg_dump` periódico.
-- **Migraciones:** nunca edites una ya aplicada; crea otra con `npx supabase migration new <nombre>`.
+- **Keep-alive:** Supabase Free pausa el proyecto tras ~7 días sin actividad. `.github/workflows/keep-alive.yml` consulta cada proyecto cada 3 días. Requiere, en GitHub → Settings → Secrets and variables → Actions: `SUPABASE_URL_PROD`, `SUPABASE_ANON_KEY_PROD`, `SUPABASE_URL_DEV`, `SUPABASE_ANON_KEY_DEV`. GitHub solo ejecuta los cron de la rama por defecto: el workflow actúa cuando `fiel` se fusiona a `main`.
+- **Backups:** ver `docs/RESPALDOS.md` (manual, cifrados, fuera de git).
+- **Migraciones:** nunca edites una ya aplicada; crea otra con `npx supabase migration new <nombre>`. Aplícala primero en `fiel-dev`, pruébala y solo entonces en producción, con respaldo previo.
+- **Seguridad:** ver `docs/SEGURIDAD.md`.
+
+## 9. Entorno de desarrollo (rama `fiel`)
+
+`main` es producción; `fiel` es la rama de trabajo. Un push a `fiel` **no** toca producción: Vercel solo crea un *Preview* (URL `*.vercel.app` privada) útil para probar con HTTPS y desde el celular.
+
+1. Supabase → New project `fiel-dev` (Free; permite 2 proyectos activos).
+2. Repite en `fiel-dev` las secciones 2 y 5 (migraciones, correo, plantillas). En URL Configuration: Site URL `http://localhost:3000`; Redirect URLs `http://localhost:3000/**` y `https://*.vercel.app/**`.
+3. `.env.local` con la URL y la clave `anon` de `fiel-dev` (así `npm run dev` nunca toca producción).
+4. Vercel → Settings → Environment Variables: las de producción en *Production*, las de `fiel-dev` en *Preview*.
+5. Migraciones a dev: `npx supabase link --project-ref <ref-dev>` y `npx supabase db push`. Antes de aplicar a producción, enlaza `<ref-prod>` y verifica con `npx supabase projects list` cuál está enlazado.
+6. Flujo: trabaja y haz commit en `fiel` → `npm run lint`, `npx tsc --noEmit`, `npm run build` → push a `fiel` → cuando esté probado, PR de `fiel` a `main`.

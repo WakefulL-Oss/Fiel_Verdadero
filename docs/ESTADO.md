@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-Última actualización: 31 de octubre de 2026.
+Última actualización: 1 de noviembre de 2026.
 
 ## Hecho
 
@@ -16,19 +16,27 @@
 - [x] Resend con dominio verificado y SMTP personalizado en Supabase.
 - [x] Plantillas de correo (Magic link y Confirm sign up) con código de 6 dígitos.
 - [x] Páginas legales: `/privacidad`, `/terminos`, `/eliminar-datos`.
+- [x] `NEXT_PUBLIC_CONTACT_EMAIL` en Vercel y reenvío de correo en Namecheap.
+- [x] Rama de trabajo `fiel` (local y remota); `main` queda como producción.
+- [x] Login por código al correo: `/login`, `/auth/callback`, `src/proxy.ts` (refresco de sesión).
+- [x] Cabeceras de seguridad (CSP y otras) en `next.config.ts`.
+- [x] Subagentes `planer`, `ena` y `revi` en `.claude/agents/`.
+- [x] Docs de seguridad (`SEGURIDAD.md`) y respaldos (`RESPALDOS.md`); respaldos excluidos de git.
+- [x] Workflow keep-alive y Dependabot en `.github/`.
 
 ## Pendiente (en orden)
 
-1. [ ] Poner `NEXT_PUBLIC_CONTACT_EMAIL` en Vercel y activar Email Forwarding en Namecheap para ese buzón.
-2. [ ] Crear la app de Facebook (usa las tres URLs legales), pasarla a modo Live y activarla en Supabase.
-3. [ ] Login: página `/login` (código por correo + botón Facebook), `/auth/callback`, refresco de sesión con `proxy` de Next 16.
-4. [ ] Hacerte admin: `update perfiles set rol = 'admin' where id = '<tu-uuid>';`
-5. [ ] Editor de sermones (Tiptap), borradores y notas privadas.
-6. [ ] Página pública de cada sermón con ISR y metadatos Open Graph.
-7. [ ] Generación de PDF en el navegador.
-8. [ ] Búsqueda en español, etiquetas y citas bíblicas.
-9. [ ] Biblia de dominio público (RV 1909 u otra) como JSON estático.
-10. [ ] Subida de portadas (WebP, máx. 300 KB).
-11. [ ] Reportes y panel de moderación.
-12. [ ] Keep-alive de Supabase (el plan Free pausa tras ~7 días sin actividad) y export periódico con `pg_dump`.
-13. [ ] Logo.
+1. [ ] Crear el proyecto Supabase `fiel-dev`, apuntar `.env.local` a él y configurar Vercel *Preview* (`GUIA-CONFIGURACION.md`, sección 9). Hasta entonces `npm run dev` usa la BD de producción.
+2. [ ] Secrets de GitHub para el keep-alive y fusionar `fiel` en `main` para que el cron funcione.
+3. [ ] Ajustes de Auth en Supabase de `SEGURIDAD.md`: OTP a 10 min, CAPTCHA, Redirect URLs de producción solo con el dominio.
+4. [ ] Probar el login de punta a punta en local y hacerte admin: `update perfiles set rol = 'admin' where id = '<tu-uuid>';`
+5. [ ] Facebook: app creada en Meta, **en pausa** (Meta pide verificación del negocio para publicar). Retomar después; el login por código ya funciona sin él.
+6. [ ] Editor de sermones (Tiptap), borradores y notas privadas, con el esquema de contenido de `SEGURIDAD.md`.
+7. [ ] Página pública de cada sermón con ISR y metadatos Open Graph.
+8. [ ] Generación de PDF en el navegador.
+9. [ ] Búsqueda en español, etiquetas y citas bíblicas.
+10. [ ] Biblia de dominio público (RV 1909 u otra) como JSON estático.
+11. [ ] Subida de portadas (WebP, máx. 300 KB).
+12. [ ] Reportes y panel de moderación.
+13. [ ] Primer respaldo manual de producción (`RESPALDOS.md`).
+14. [ ] Logo.

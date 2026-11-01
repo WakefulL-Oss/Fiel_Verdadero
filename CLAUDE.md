@@ -3,7 +3,8 @@
 Biblioteca gratuita de sermones en español (escribir, publicar, compartir, PDF). Sin fines comerciales, costo $0. Ver @AGENTS.md (Next 16 ≠ el que conoces: leer `node_modules/next/dist/docs/` antes de usar APIs nuevas; `middleware` ahora es `proxy`).
 
 ## Infra
-- **Front/SSR:** Next.js 16 App Router + TS + Tailwind 4 → Vercel Hobby (deploy auto en push a `main`).
+- **Ramas:** trabajar siempre en `fiel` (local y remota); `main` = producción, solo por PR desde `fiel`. Nunca push directo a `main`. Local usa el proyecto Supabase `fiel-dev`, no producción.
+- **Front/SSR:** Next.js 16 App Router + TS + Tailwind 4 → Vercel Hobby (deploy a producción en push a `main`; otras ramas = Preview).
 - **Datos/Auth/Storage:** Supabase Free (Postgres + RLS). El navegador consulta Supabase directo; sin backend propio.
 - **Login:** código OTP por correo (Resend vía SMTP en Supabase) + Facebook. Sin Google, sin contraseñas, sin Auth UI.
 - **PDF:** `@react-pdf/renderer` en el cliente (import dinámico). Cero cómputo de servidor.

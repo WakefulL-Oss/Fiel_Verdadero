@@ -22,7 +22,8 @@ Arquitectura serverless de costo $0. No hay servidor propio: el sitio es estáti
                                      Resend (correo con código)
 ```
 
-- Un `git push` a `main` despliega solo en Vercel.
+- `main` = producción: un push a `main` despliega en Vercel. `fiel` = trabajo diario: un push a `fiel` solo crea un Preview. Producción se actualiza con un PR de `fiel` a `main`.
+- Dos proyectos Supabase: producción y `fiel-dev` (local y Previews).
 - Las migraciones de BD no pasan por Vercel: se aplican con `npx supabase db push --linked`.
 - El PDF se genera en el navegador del usuario; el servidor no gasta cómputo.
 
@@ -62,8 +63,8 @@ Todos los usuarios viven en el proyecto de Supabase del propietario (`auth.users
 | Recurso | Límite | Mitigación |
 |---|---|---|
 | Supabase BD | 500 MB | Texto ligero; ~15 KB por sermón |
-| Supabase inactividad | Pausa a ~7 días sin uso | Cron keep-alive (pendiente) |
-| Supabase backups | No incluidos | Export periódico con `pg_dump` (pendiente) |
+| Supabase inactividad | Pausa a ~7 días sin uso | Cron keep-alive en GitHub Actions |
+| Supabase backups | No incluidos | `pg_dump` manual y cifrado, ver `docs/RESPALDOS.md` |
 | Storage | 1 GB | Compresión a WebP en cliente, tope 300 KB |
 | Vercel | 100 GB/mes, solo uso no comercial | ISR y caché de CDN |
 | Resend | 3,000 correos/mes, 100/día | Código en lugar de enlaces; límite de envíos por hora |
