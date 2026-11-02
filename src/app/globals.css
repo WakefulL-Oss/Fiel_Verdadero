@@ -134,6 +134,24 @@ input {
   caret-color: var(--foreground);
 }
 
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.entrada {
+  animation: entrada 500ms var(--ease-salida) both;
+  animation-delay: var(--retraso, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrada {
+    animation: none;
+  }
+}
+
 @media print {
   .no-imprimir {
     display: none !important;

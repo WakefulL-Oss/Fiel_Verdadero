@@ -8,15 +8,16 @@ const SECUNDARIO = `inline-flex items-center justify-center gap-2 rounded-lg bor
 export const ESTILO_BOTON = {
   primario: `${PRIMARIO} h-[38px] px-4 text-sm`,
   secundario: `${SECUNDARIO} h-9 px-3 text-[13.5px]`,
+  secundarioGrande: `${SECUNDARIO} h-[38px] px-4 text-sm`,
   primarioChico: `${PRIMARIO} h-8 px-3 text-[13px]`,
   secundarioChico: `${SECUNDARIO} h-8 px-3 text-[13px]`,
   fantasma: `inline-flex h-8 items-center gap-1.5 rounded-md px-2 text-[13px] font-medium text-muted hover:bg-realce hover:text-foreground ${PULSAR}`,
 };
 
-export const ESTILO_CAMPO =
+const ESTILO_CAMPO =
   "h-9 w-full rounded-lg border border-border bg-surface px-2.5 text-sm text-foreground outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-tenue hover:border-border-fuerte focus:border-accent focus:shadow-[0_0_0_3px_var(--anillo)]";
 
-export function Etiqueta({ className = "", ...props }: ComponentProps<"label">) {
+function Etiqueta({ className = "", ...props }: ComponentProps<"label">) {
   return (
     <label {...props} className={`text-[13px] font-medium whitespace-nowrap text-foreground ${className}`} />
   );

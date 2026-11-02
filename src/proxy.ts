@@ -3,7 +3,16 @@ import { NextResponse, type NextRequest } from "next/server";
 
 export async function proxy(request: NextRequest) {
   const conSesion = request.cookies.getAll().some((c) => c.name.startsWith("sb-"));
-  if (!conSesion) return NextResponse.next();
+  if (!conSesion) {
+    const { pathname } = request.nextUrl;
+    if (pathname === "/dashboard" || pathname.startsWith("/dashboard/")) {
+      const login = request.nextUrl.clone();
+      login.pathname = "/login";
+      login.search = "?next=/dashboard";
+      return NextResponse.redirect(login);
+    }
+    return NextResponse.next();
+  }
 
   let response = NextResponse.next({ request });
   const supabase = createServerClient(

@@ -3,7 +3,7 @@ import { LogIn } from "lucide-react";
 import { BotonTema } from "@/components/BotonTema";
 import { ESTILO_BOTON } from "@/components/Formulario";
 import { EnlacesLegales } from "@/components/Footer";
-import { LogoApilado, LogoHorizontal } from "@/components/marca/Logo";
+import { Logo, LogoApilado } from "@/components/marca/Logo";
 
 type Enlace = { pregunta: string; texto: string; href: string };
 
@@ -53,7 +53,7 @@ export function AccesoDividido({
     <div className="flex min-h-dvh bg-panel">
       <div className="flex w-full flex-col border-border-suave bg-background lg:w-[620px] lg:shrink-0 lg:border-r">
         <header className="flex h-[84px] shrink-0 items-center justify-between gap-4 px-4 sm:px-12">
-          <LogoHorizontal />
+          <Logo grande />
           <div className="flex items-center gap-2">
             <Link href="/login" className={`${ESTILO_BOTON.secundarioChico} lg:hidden`}>
               Entrar

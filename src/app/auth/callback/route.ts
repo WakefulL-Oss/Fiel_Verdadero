@@ -5,7 +5,7 @@ import { rutaSegura } from "@/lib/ruta-segura";
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const destino = rutaSegura(searchParams.get("next"));
+  const destino = rutaSegura(searchParams.get("next"), "/dashboard");
 
   if (code) {
     const supabase = await createClient();

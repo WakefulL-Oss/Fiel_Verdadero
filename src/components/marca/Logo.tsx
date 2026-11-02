@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Menora } from "./Menora";
 
-export function Nombre({ className = "" }: { className?: string }) {
+function Nombre({ className = "" }: { className?: string }) {
   return (
     <span className={`font-display leading-none font-bold whitespace-nowrap text-foreground ${className}`}>
       Fiel <i className="font-medium text-accent">y</i> Verdadero
@@ -9,32 +9,16 @@ export function Nombre({ className = "" }: { className?: string }) {
   );
 }
 
-export function IconoApp({ className = "" }: { className?: string }) {
+export function Logo({ grande = false }: { grande?: boolean }) {
   return (
-    <span
-      aria-hidden
-      className={`flex shrink-0 items-center justify-center rounded-[27%] bg-[#3a1e3c] text-[#f5f0ec] [--accent:#d9ae52] ${className}`}
+    <Link
+      href="/"
+      aria-label="Fiel y Verdadero, inicio"
+      className={`flex items-center gap-3.5 ${grande ? "sm:gap-[18px]" : ""}`}
     >
-      <Menora simplificada className="h-[62%] w-auto" />
-    </span>
-  );
-}
-
-export function LogoCompacto() {
-  return (
-    <Link href="/" aria-label="Fiel y Verdadero, inicio" className="flex items-center gap-2.5">
-      <IconoApp className="size-[26px]" />
-      <Nombre className="text-[15px]" />
-    </Link>
-  );
-}
-
-export function LogoHorizontal() {
-  return (
-    <Link href="/" aria-label="Fiel y Verdadero, inicio" className="flex items-center gap-[18px]">
-      <Menora className="h-[38px] w-auto text-foreground" />
-      <span aria-hidden className="h-8 w-[1.5px] bg-border" />
-      <Nombre className="text-2xl" />
+      <Menora className={`w-auto text-foreground h-8 ${grande ? "sm:h-[38px]" : ""}`} />
+      <span aria-hidden className={`w-[1.5px] bg-border h-6 ${grande ? "sm:h-8" : ""}`} />
+      <Nombre className="text-xl sm:text-2xl" />
     </Link>
   );
 }

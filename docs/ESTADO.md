@@ -26,6 +26,7 @@
 - [x] Workflow keep-alive y Dependabot en `.github/`.
 - [x] Marca aplicada: paleta púrpura real (claro y oscuro), Lora, `Menora`/`Logo` en `src/components/marca/`, favicon, `apple-icon`, `manifest`. Fuente de la marca en `docs/marca/`.
 - [x] Vistas según el mockup v2 (`docs/diseno/`): `/login` centrado, `/registro` y `/recuperar` divididos con versículo, páginas legales con índice y resumen, `/eliminar-datos` con tarjetas. El registro pide nombre (va a `perfiles.nombre_completo`) y aceptar los términos.
+- [x] Landing en `/` (header y pie centrados, vista previa del editor, bloques Escribir/Compartir/PDF) y `/dashboard` (protegido en `src/proxy.ts` y en la página). Tras entrar, login, registro y recuperación llevan a `/dashboard`. El botón de sesión del header muestra Entrar/Crear cuenta o Dashboard según la sesión, con la parte dinámica en streaming (Suspense) sobre una página estática.
 
 ## Pendiente (en orden)
 

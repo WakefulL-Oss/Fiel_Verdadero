@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+
 import { Encabezado } from "@/components/Encabezado";
 import { Footer } from "@/components/Footer";
 import { NavLegal } from "@/components/legal/NavLegal";
@@ -10,9 +10,7 @@ export default function LayoutLegal({ children }: { children: React.ReactNode })
       <Encabezado seccion="Legal" subnav={<NavLegal className="flex" />}>
         <NavLegal className="hidden md:flex" />
         <span aria-hidden className="mx-2.5 hidden h-5 w-px bg-border-suave md:block" />
-        <Suspense>
-          <BotonSesion />
-        </Suspense>
+        <BotonSesion />
       </Encabezado>
       {children}
       <Footer />

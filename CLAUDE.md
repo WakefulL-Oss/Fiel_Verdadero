@@ -20,7 +20,7 @@ src/app/            rutas finas: solo componen, sin lógica
 src/features/<x>/   módulo por dominio (sermones, auth, biblia, pdf, moderacion)
   components/ actions.ts queries.ts types.ts schema.ts
 src/components/     UI compartida genérica (sin lógica de dominio)
-src/lib/            supabase/{client,server}.ts, site.ts, utilidades puras
+src/lib/            supabase/server.ts (client.ts se crea con el editor), site.ts, utilidades puras
 src/data/           JSON estático (Biblia dominio público, libros)
 supabase/migrations SQL versionado
 docs/               ESTADO.md, ARQUITECTURA.md, GUIA-CONFIGURACION.md, marca/ (fuente de la marca), diseno/ (mockups de Claude Design); nada de docs/ se sirve

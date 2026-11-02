@@ -19,6 +19,7 @@ export type EstadoAuth = {
   aviso?: string;
 };
 
+const DESTINO = "/dashboard";
 const GENERICO = "No pudimos completar la acción. Intenta de nuevo.";
 
 function mensaje(codigo?: string, porDefecto = GENERICO) {
@@ -65,7 +66,7 @@ export async function iniciarSesion(
       error: mensaje(error.code, "Correo o contraseña incorrectos"),
     };
   }
-  redirect(rutaSegura(formData.get("next")?.toString()));
+  redirect(rutaSegura(formData.get("next")?.toString(), DESTINO));
 }
 
 export async function registrar(
@@ -100,7 +101,7 @@ export async function registrar(
       ),
     };
   }
-  if (data.session) redirect("/");
+  if (data.session) redirect(DESTINO);
   return { paso: "codigo", correo: datos.data.correo };
 }
 
@@ -125,7 +126,7 @@ export async function verificarRegistro(
   if (error) {
     return { paso: "codigo", correo: datos.data.correo, error: "Código incorrecto o vencido" };
   }
-  redirect("/");
+  redirect(DESTINO);
 }
 
 export async function reenviarCodigo(
@@ -205,7 +206,7 @@ export async function cambiarPassword(
       error: error.code === "weak_password" ? "La contraseña es muy débil" : "Sesión vencida. Pide un código nuevo.",
     };
   }
-  redirect("/");
+  redirect(DESTINO);
 }
 
 export async function cerrarSesion() {
