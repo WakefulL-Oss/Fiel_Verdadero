@@ -2,9 +2,11 @@ import { LogoCompacto } from "./marca/Logo";
 
 export function Encabezado({
   seccion,
+  subnav,
   children,
 }: {
   seccion?: string;
+  subnav?: React.ReactNode;
   children?: React.ReactNode;
 }) {
   return (
@@ -19,6 +21,9 @@ export function Encabezado({
         )}
         <div className="ml-auto flex items-center gap-0.5">{children}</div>
       </div>
+      {subnav && (
+        <div className="overflow-x-auto border-t border-linea px-2.5 py-1.5 md:hidden">{subnav}</div>
+      )}
     </header>
   );
 }
