@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogIn } from "lucide-react";
+import { BotonTema } from "@/components/BotonTema";
 import { ESTILO_BOTON } from "@/components/Formulario";
 import { EnlacesLegales } from "@/components/Footer";
 import { LogoApilado, LogoHorizontal } from "@/components/marca/Logo";
@@ -24,8 +25,9 @@ export function AccesoCentrado({ enlace, children }: { enlace: Enlace; children:
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--border)_1px,transparent_1px)] [background-size:22px_22px] opacity-70 [mask-image:radial-gradient(ellipse_55%_60%_at_50%_45%,#000_0%,transparent_75%)]"
       />
-      <header className="relative flex h-[60px] shrink-0 items-center justify-end px-4 sm:px-7">
+      <header className="relative flex h-[60px] shrink-0 items-center justify-end gap-3 px-4 sm:px-7">
         <Invitacion {...enlace} />
+        <BotonTema />
       </header>
       <main className="relative flex flex-1 items-center justify-center px-4 pb-10">
         <div className="flex w-full max-w-[372px] flex-col gap-6">
@@ -52,9 +54,14 @@ export function AccesoDividido({
       <div className="flex w-full flex-col border-border-suave bg-background lg:w-[620px] lg:shrink-0 lg:border-r">
         <header className="flex h-[84px] shrink-0 items-center justify-between gap-4 px-4 sm:px-12">
           <LogoHorizontal />
-          <Link href="/login" className={`${ESTILO_BOTON.secundarioChico} lg:hidden`}>
-            Entrar
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link href="/login" className={`${ESTILO_BOTON.secundarioChico} lg:hidden`}>
+              Entrar
+            </Link>
+            <span className="lg:hidden">
+              <BotonTema />
+            </span>
+          </div>
         </header>
         <main className="flex flex-1 items-center px-4 pb-14 sm:pl-[112px]">
           <div className="flex w-full max-w-[372px] flex-col gap-6">{children}</div>
@@ -64,7 +71,8 @@ export function AccesoDividido({
         </footer>
       </div>
       <div className="hidden min-w-0 flex-1 flex-col lg:flex">
-        <div className="flex h-[84px] shrink-0 items-center justify-end px-8">
+        <div className="flex h-[84px] shrink-0 items-center justify-end gap-3 px-8">
+          <BotonTema />
           <Link href="/login" className={`${ESTILO_BOTON.secundarioChico} hover:border-foreground`}>
             <LogIn size={15} />
             Iniciar sesión

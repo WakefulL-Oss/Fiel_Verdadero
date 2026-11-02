@@ -1,3 +1,4 @@
+import { BotonTema } from "./BotonTema";
 import { LogoCompacto } from "./marca/Logo";
 
 export function Encabezado({
@@ -19,7 +20,10 @@ export function Encabezado({
             <span className="text-[13.5px] text-tenue">{seccion}</span>
           </span>
         )}
-        <div className="ml-auto flex items-center gap-0.5">{children}</div>
+        <div className="ml-auto flex items-center gap-0.5">
+          {children}
+          <BotonTema />
+        </div>
       </div>
       {subnav && (
         <div className="overflow-x-auto border-t border-linea px-2.5 py-1.5 md:hidden">{subnav}</div>

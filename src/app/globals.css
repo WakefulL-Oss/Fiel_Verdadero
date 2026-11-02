@@ -26,8 +26,35 @@
   color-scheme: light;
 }
 
+/* Oscuro: elección guardada (data-theme) o, sin JS, el tema del sistema. */
+:root[data-theme="dark"] {
+  --background: #161015;
+  --surface: #1e161d;
+  --panel: #120c11;
+  --realce: #2c2030;
+  --foreground: #f5f0ec;
+  --muted: #cdbfcb;
+  --tenue: #a593a4;
+  --border: #3d2d3b;
+  --border-fuerte: #5a4658;
+  --border-suave: #2f232e;
+  --linea: #2a1f29;
+  --accent: #d9ae52;
+  --anillo: #3d3220;
+  --cita: #5a4826;
+  --aviso: #2a2216;
+  --aviso-borde: #5a4826;
+  --aviso-texto: #e8cf97;
+  --primario: #f5f0ec;
+  --primario-hover: #e6dcdd;
+  --primario-texto: #3a1e3c;
+  --error: #f08a8f;
+  --exito: #8fbf8a;
+  color-scheme: dark;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --background: #161015;
     --surface: #1e161d;
     --panel: #120c11;

@@ -15,6 +15,9 @@ const roboto = Roboto({
   weight: ["400", "500"],
 });
 
+// Script fijo (sin datos de usuario): aplica el tema antes de pintar para evitar el parpadeo.
+const SCRIPT_TEMA = `try{var t=localStorage.getItem("tema");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}`;
+
 export const metadata: Metadata = {
   title: {
     default: "Fiel y Verdadero",
@@ -33,7 +36,14 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${lora.variable} ${roboto.variable} h-full antialiased`}>
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${lora.variable} ${roboto.variable} h-full antialiased`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SCRIPT_TEMA }} />
+      </head>
       <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
