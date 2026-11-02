@@ -44,7 +44,7 @@ export function RegistroForm({ correoInicial }: { correoInicial?: string }) {
         <Boton disabled={registrando}>{registrando ? "Creando…" : "Crear cuenta"}</Boton>
         <p className="text-sm text-muted">
           ¿Ya tienes cuenta?{" "}
-          <Link href="/login" className="hover:text-accent">
+          <Link href="/login" className="hover:text-foreground">
             Entrar
           </Link>
         </p>
@@ -64,7 +64,7 @@ export function RegistroForm({ correoInicial }: { correoInicial?: string }) {
       <form action={reenviarAccion} className="text-sm">
         <input type="hidden" name="correo" value={registro.correo} />
         <Turnstile reinicio={reenvio} />
-        <button disabled={reenviando} className="text-muted hover:text-accent">
+        <button disabled={reenviando} className="text-muted hover:text-foreground">
           Reenviar código
         </button>
         <MensajeForm error={reenvio.error} aviso={reenvio.aviso} />

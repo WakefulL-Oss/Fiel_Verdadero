@@ -1,21 +1,21 @@
 import Link from "next/link";
+import { ESTILO_BOTON } from "@/components/Formulario";
 import { cerrarSesion } from "../actions";
 import { obtenerUsuario } from "../queries";
 
 export async function BotonSesion() {
   const usuario = await obtenerUsuario();
-  const estilo = "text-sm text-muted hover:text-accent";
 
   if (!usuario) {
     return (
-      <Link href="/login" className={estilo}>
+      <Link href="/login" className={`${ESTILO_BOTON.secundario} py-1.5`}>
         Entrar
       </Link>
     );
   }
   return (
     <form action={cerrarSesion}>
-      <button className={estilo}>Salir</button>
+      <button className="text-sm text-muted hover:text-foreground">Salir</button>
     </form>
   );
 }

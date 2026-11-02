@@ -23,7 +23,9 @@ src/components/     UI compartida genérica (sin lógica de dominio)
 src/lib/            supabase/{client,server}.ts, site.ts, utilidades puras
 src/data/           JSON estático (Biblia dominio público, libros)
 supabase/migrations SQL versionado
-docs/               ESTADO.md, ARQUITECTURA.md, GUIA-CONFIGURACION.md
+docs/               ESTADO.md, ARQUITECTURA.md, GUIA-CONFIGURACION.md, marca/ (fuente de la marca, no se sirve)
+src/components/marca/ Menora y Logo como componentes (siguen el modo oscuro)
+public/marca/       solo los assets servidos (iconos PWA)
 ```
 Un módulo no importa de otro `features/*`; comparte vía `lib/` o `components/`.
 
@@ -40,7 +42,7 @@ Un módulo no importa de otro `features/*`; comparte vía `lib/` o `components/`
 ## Front compacto
 - Densidad alta: espaciado reducido, `max-w` de lectura, sin heros vacíos ni relleno.
 - Sin textos explicativos, subtítulos ni instrucciones innecesarias; etiquetas cortas, estados vacíos de una línea.
-- Tokens de `globals.css` (`background`, `foreground`, `muted`, `accent`, `border`); clase `font-display` (Cormorant Garamond) solo en títulos, Roboto en el resto. Soportar modo oscuro.
+- Marca en `docs/marca/README.md` (paleta púrpura real, Lora + Roboto). Tokens de `globals.css` (`background`, `surface`, `foreground`, `muted`, `accent` = oro, `border`, `border-suave`, `primario`, `error`); `font-display` (Lora) solo en títulos. El oro no se usa en texto pequeño (contraste). Soportar modo oscuro.
 - Mobile-first; componentes reutilizables en `src/components/` antes de duplicar clases.
 
 ## Seguridad y licencia

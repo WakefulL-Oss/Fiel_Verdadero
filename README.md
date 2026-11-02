@@ -7,7 +7,7 @@ Biblioteca gratuita de sermones en español: escribe, publica, comparte y descar
 | Capa | Tecnología |
 |---|---|
 | Frontend / SSR | Next.js 16 (App Router) + TypeScript |
-| Estilos | Tailwind CSS 4 · Cormorant Garamond + Roboto |
+| Estilos | Tailwind CSS 4 · Lora + Roboto |
 | Base de datos, Auth, Storage | Supabase (Postgres, plan Free) |
 | Hosting | Vercel (plan Hobby) |
 | Correo (códigos de acceso) | Resend (plan Free) vía SMTP en Supabase |

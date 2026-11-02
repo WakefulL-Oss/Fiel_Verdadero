@@ -33,10 +33,10 @@ export function LoginForm({ next }: { next?: string }) {
       <MensajeForm error={estado.error} />
       <Boton disabled={pendiente}>{pendiente ? "Entrando…" : "Entrar"}</Boton>
       <p className="flex justify-between text-sm text-muted">
-        <Link href="/recuperar" className="hover:text-accent">
+        <Link href="/recuperar" className="hover:text-foreground">
           Olvidé mi contraseña
         </Link>
-        <Link href="/registro" className="hover:text-accent">
+        <Link href="/registro" className="hover:text-foreground">
           Crear cuenta
         </Link>
       </p>

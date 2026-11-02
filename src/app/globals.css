@@ -1,35 +1,74 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf7f2;
-  --foreground: #2b2118;
-  --muted: #6e6256;
-  --accent: #8a5a2b;
-  --border: #e6dccd;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-border: var(--border);
-  --font-sans: var(--font-roboto), system-ui, sans-serif;
-  --font-display: var(--font-display), Georgia, serif;
+  --background: #f5f0ec;
+  --surface: #fbf9f7;
+  --foreground: #3a1e3c;
+  --muted: #5c4a5c;
+  --accent: #b8892e;
+  --border: #d6c8cc;
+  --border-suave: #e6dcdd;
+  --primario: #3a1e3c;
+  --primario-texto: #f5f0ec;
+  --error: #a3262e;
+  --sombra: 0 1px 2px rgb(58 30 60 / 0.12), 0 8px 24px rgb(58 30 60 / 0.08);
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #17130f;
-    --foreground: #f1eadf;
-    --muted: #b3a695;
-    --accent: #d9a566;
-    --border: #3a3128;
+    --background: #1a1019;
+    --surface: #231622;
+    --foreground: #f5f0ec;
+    --muted: #c4b3c1;
+    --accent: #d9ae52;
+    --border: #44303f;
+    --border-suave: #322230;
+    --primario: #f5f0ec;
+    --primario-texto: #3a1e3c;
+    --error: #f08a8f;
+    --sombra: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
+    color-scheme: dark;
   }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-border-suave: var(--border-suave);
+  --color-primario: var(--primario);
+  --color-primario-texto: var(--primario-texto);
+  --color-error: var(--error);
+  --shadow-tarjeta: var(--sombra);
+  --font-sans: var(--font-roboto), Arial, sans-serif;
+  --font-display: var(--font-lora), Georgia, serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+
+a {
+  text-underline-offset: 3px;
+  text-decoration-color: var(--accent);
+}
+
+input {
+  caret-color: var(--accent);
 }

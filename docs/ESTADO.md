@@ -1,10 +1,10 @@
 # Estado del proyecto
 
-Última actualización: 1 de noviembre de 2026.
+Última actualización: 2 de noviembre de 2026.
 
 ## Hecho
 
-- [x] Proyecto Next.js 16 + TypeScript + Tailwind, fuentes Cormorant Garamond y Roboto, paleta clara y oscura.
+- [x] Proyecto Next.js 16 + TypeScript + Tailwind, fuentes Lora y Roboto.
 - [x] Portada provisional (sin logo) con pie de página.
 - [x] Esquema de base de datos y políticas RLS (`supabase/migrations/20261031000000_init.sql`) y etiquetas semilla.
 - [x] Migraciones aplicadas al proyecto remoto de Supabase.
@@ -23,7 +23,8 @@
 - [x] CAPTCHA (Turnstile) integrado en registro, login, recuperación y reenvío; falta activarlo en Cloudflare y Supabase.
 - [x] Subagentes `planer`, `ena` y `revi` en `.claude/agents/`.
 - [x] Docs de seguridad (`SEGURIDAD.md`) y respaldos (`RESPALDOS.md`); respaldos excluidos de git.
-- [x] Workflow keep-alive y Dependabot en `.github/`.
+- [x] Workflow keep-alive y Dependabot en .github/.
+- [x] Marca aplicada: paleta púrpura real (claro y oscuro), Lora, Menora/Logo en src/components/marca/, encabezado y pie globales, favicon, pple-icon, manifest. Fuente de la marca en docs/marca/.
 
 ## Pendiente (en orden)
 
@@ -41,4 +42,4 @@
 11. [ ] Subida de portadas (WebP, máx. 300 KB).
 12. [ ] Reportes y panel de moderación.
 13. [ ] Primer respaldo manual de producción (`RESPALDOS.md`).
-14. [ ] Logo (hay un icono provisional con la letra F en `src/app/icon.svg`).
+14. [ ] Diseño de vistas a partir del proyecto de Claude Design (pendiente de acceso: `/design-login` o exportar los archivos).
