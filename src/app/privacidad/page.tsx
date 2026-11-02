@@ -16,7 +16,8 @@ export default function Privacidad() {
       <h2>Datos que recopilamos</h2>
       <ul>
         <li>
-          <strong>Cuenta:</strong> tu correo electrónico, y si entras con
+          <strong>Cuenta:</strong> tu correo electrónico, tu contraseña (guardada
+          cifrada, nunca en texto legible), y si entras con
           Facebook, el nombre y la foto de perfil que Facebook comparte con
           nosotros.
         </li>
@@ -34,7 +35,7 @@ export default function Privacidad() {
       <ul>
         <li>Crear y mantener tu cuenta, y permitirte iniciar sesión.</li>
         <li>Mostrar los sermones que decidas publicar.</li>
-        <li>Enviarte el código de acceso a tu correo.</li>
+        <li>Enviarte los códigos de verificación de tu correo y de recuperación de contraseña.</li>
         <li>Mantener la seguridad del sitio y moderar contenido reportado.</li>
       </ul>
       <p>
@@ -53,7 +54,8 @@ export default function Privacidad() {
       <ul>
         <li>Supabase: base de datos, autenticación y almacenamiento de imágenes.</li>
         <li>Vercel: alojamiento del sitio web.</li>
-        <li>Resend: envío de los correos con tu código de acceso.</li>
+        <li>Resend: envío de los correos con tus códigos de verificación y recuperación.</li>
+        <li>Cloudflare Turnstile: verificación anti-bots en los formularios de cuenta.</li>
         <li>Meta (Facebook): solo si eliges iniciar sesión con Facebook.</li>
       </ul>
 

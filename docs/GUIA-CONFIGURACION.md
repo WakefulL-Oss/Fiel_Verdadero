@@ -106,3 +106,14 @@ update perfiles set rol = 'admin' where id = '<tu-uuid-de-auth.users>';
 4. Vercel → Settings → Environment Variables: las de producción en *Production*, las de `fiel-dev` en *Preview*.
 5. Migraciones a dev: `npx supabase link --project-ref <ref-dev>` y `npx supabase db push`. Antes de aplicar a producción, enlaza `<ref-prod>` y verifica con `npx supabase projects list` cuál está enlazado.
 6. Flujo: trabaja y haz commit en `fiel` → `npm run lint`, `npx tsc --noEmit`, `npm run build` → push a `fiel` → cuando esté probado, PR de `fiel` a `main`.
+
+## 10. CAPTCHA (Cloudflare Turnstile)
+
+Protege `/registro`, `/login` y `/recuperar`. Si `NEXT_PUBLIC_TURNSTILE_SITE_KEY` no está definida, el widget no aparece (útil en local).
+
+1. dash.cloudflare.com → Turnstile → Add widget. Modo *Managed*. Hostnames: tu dominio y `localhost`. Copia la **Site Key** (pública) y la **Secret Key** (privada).
+2. **Orden importante:** al activar el CAPTCHA en Supabase, toda llamada de Auth sin token falla. Haz primero el paso 3 y el despliegue; el paso 4 al final.
+3. Pon `NEXT_PUBLIC_TURNSTILE_SITE_KEY` en `.env.local` y en Vercel (*Production* con la Site Key real; *Preview*/local con la de pruebas si usas `fiel-dev`). Haz Redeploy.
+4. Supabase → Authentication → Attack Protection → Enable CAPTCHA protection → Turnstile → pega la **Secret Key**. Solo ahí: nunca en el repo ni en Vercel.
+5. Pruebas en `fiel-dev`: usa las claves de prueba de Cloudflare que siempre aprueban: Site Key `1x00000000000000000000AA`, Secret Key `1x0000000000000000000000000000000AA`.
+6. Verifica registro, login y recuperación, y que la consola del navegador no muestre errores de CSP.

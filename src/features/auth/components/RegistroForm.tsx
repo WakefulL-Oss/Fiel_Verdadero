@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { Boton, Campo, MensajeForm } from "@/components/Formulario";
+import { Turnstile } from "@/components/Turnstile";
 import { reenviarCodigo, registrar, verificarRegistro, type EstadoAuth } from "../actions";
 import { CampoCodigo } from "./CampoCodigo";
 
 export function RegistroForm({ correoInicial }: { correoInicial?: string }) {
   const inicial: EstadoAuth = correoInicial
-    ? { paso: "codigo", correo: correoInicial }
+    ? { paso: "codigo", correo: correoInicial, aviso: "Confirma tu correo con el código que te enviamos" }
     : { paso: "datos" };
   const [registro, registrarAccion, registrando] = useActionState(registrar, inicial);
   const [verificado, verificarAccion, verificando] = useActionState(verificarRegistro, {
@@ -38,6 +39,7 @@ export function RegistroForm({ correoInicial }: { correoInicial?: string }) {
           maxLength={72}
           required
         />
+        <Turnstile reinicio={registro} />
         <MensajeForm error={registro.error} />
         <Boton disabled={registrando}>{registrando ? "Creando…" : "Crear cuenta"}</Boton>
         <p className="text-sm text-muted">
@@ -56,11 +58,12 @@ export function RegistroForm({ correoInicial }: { correoInicial?: string }) {
         <p className="text-sm text-muted">Código enviado a {registro.correo}</p>
         <input type="hidden" name="correo" value={registro.correo} />
         <CampoCodigo />
-        <MensajeForm error={verificado.error} />
+        <MensajeForm error={verificado.error} aviso={registro.aviso} />
         <Boton disabled={verificando}>{verificando ? "Verificando…" : "Verificar"}</Boton>
       </form>
       <form action={reenviarAccion} className="text-sm">
         <input type="hidden" name="correo" value={registro.correo} />
+        <Turnstile reinicio={reenvio} />
         <button disabled={reenviando} className="text-muted hover:text-accent">
           Reenviar código
         </button>

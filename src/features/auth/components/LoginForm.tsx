@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { Boton, Campo, MensajeForm } from "@/components/Formulario";
+import { Turnstile } from "@/components/Turnstile";
 import { iniciarSesion, type EstadoAuth } from "../actions";
 
 export function LoginForm({ next }: { next?: string }) {
@@ -28,6 +29,7 @@ export function LoginForm({ next }: { next?: string }) {
         maxLength={72}
         required
       />
+      <Turnstile reinicio={estado} />
       <MensajeForm error={estado.error} />
       <Boton disabled={pendiente}>{pendiente ? "Entrando…" : "Entrar"}</Boton>
       <p className="flex justify-between text-sm text-muted">

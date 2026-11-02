@@ -24,7 +24,12 @@ function mensaje(codigo?: string, porDefecto = GENERICO) {
   if (codigo === "over_request_rate_limit" || codigo === "over_email_send_rate_limit") {
     return "Demasiados intentos. Espera un minuto.";
   }
+  if (codigo === "captcha_failed") return "Verificación fallida. Inténtalo de nuevo.";
   return porDefecto;
+}
+
+function captchaDe(formData: FormData) {
+  return formData.get("captcha")?.toString() || undefined;
 }
 
 function correoDe(formData: FormData) {
@@ -45,10 +50,10 @@ export async function iniciarSesion(
   const { error } = await supabase.auth.signInWithPassword({
     email: datos.data.correo,
     password: datos.data.password,
+    options: { captchaToken: captchaDe(formData) },
   });
   if (error) {
     if (error.code === "email_not_confirmed") {
-      await supabase.auth.resend({ type: "signup", email: datos.data.correo });
       redirect(`/registro?confirmar=${encodeURIComponent(datos.data.correo)}`);
     }
     return {
@@ -73,6 +78,7 @@ export async function registrar(
   const { data, error } = await supabase.auth.signUp({
     email: datos.data.correo,
     password: datos.data.password,
+    options: { captchaToken: captchaDe(formData) },
   });
   if (error) {
     return {
@@ -119,7 +125,11 @@ export async function reenviarCodigo(
   if (!datos.success) return { paso: "codigo", error: datos.error.issues[0].message };
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.resend({ type: "signup", email: datos.data.correo });
+  const { error } = await supabase.auth.resend({
+    type: "signup",
+    email: datos.data.correo,
+    options: { captchaToken: captchaDe(formData) },
+  });
   if (error) return { paso: "codigo", correo: datos.data.correo, error: mensaje(error.code) };
   return { paso: "codigo", correo: datos.data.correo, aviso: "Código reenviado" };
 }
@@ -132,8 +142,14 @@ export async function pedirRecuperacion(
   if (!datos.success) return { paso: "datos", error: datos.error.issues[0].message };
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.resetPasswordForEmail(datos.data.correo);
-  if (error?.code === "over_request_rate_limit" || error?.code === "over_email_send_rate_limit") {
+  const { error } = await supabase.auth.resetPasswordForEmail(datos.data.correo, {
+    captchaToken: captchaDe(formData),
+  });
+  if (
+    error?.code === "over_request_rate_limit" ||
+    error?.code === "over_email_send_rate_limit" ||
+    error?.code === "captcha_failed"
+  ) {
     return { paso: "datos", correo: datos.data.correo, error: mensaje(error.code) };
   }
   return { paso: "codigo", correo: datos.data.correo };

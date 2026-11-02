@@ -3,13 +3,16 @@ import type { NextConfig } from "next";
 const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
 const isDev = process.env.NODE_ENV !== "production";
 
+const turnstile = "https://challenges.cloudflare.com";
+
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' ${turnstile}${isDev ? " 'unsafe-eval'" : ""}`,
+  `frame-src ${turnstile}`,
   "style-src 'self' 'unsafe-inline'",
   `img-src 'self' data: blob: ${supabase}`,
   "font-src 'self' data:",
-  `connect-src 'self' ${supabase}${isDev ? " ws:" : ""}`,
+  `connect-src 'self' ${supabase} ${turnstile}${isDev ? " ws:" : ""}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

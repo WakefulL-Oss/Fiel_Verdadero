@@ -5,7 +5,7 @@
 - Login con correo y contraseña (Supabase Auth, hash bcrypt; la app nunca guarda contraseñas). El código por correo (6–8 dígitos) se usa solo para verificar el registro y para recuperar la contraseña. Facebook queda pendiente de verificación en Meta.
 - Contraseñas: 8–72 caracteres con letra y número (zod en `schema.ts` y mínimo en Supabase). Se permite pegar desde gestores de contraseñas.
 - Mensajes genéricos: "Correo o contraseña incorrectos"; la recuperación responde igual exista o no el correo.
-- Con contraseñas, el CAPTCHA (Turnstile) en registro, login y recuperación es **obligatorio** antes del lanzamiento (credential stuffing).
+- Con contraseñas, el CAPTCHA (Cloudflare Turnstile) en registro, login, recuperación y reenvío de código es **obligatorio** antes del lanzamiento (credential stuffing). Implementado en `src/components/Turnstile.tsx`; el token viaja como `captchaToken` a Supabase, que lo valida con la Secret Key (guardada solo en su panel). Pasos en `GUIA-CONFIGURACION.md`, sección 10.
 - Opcional posterior: comprobar contraseñas filtradas (Have I Been Pwned por prefijo de hash); implica mencionarlo en `/privacidad`.
 - Cookies de sesión con `@supabase/ssr`. `src/proxy.ts` las refresca en cada petición que tenga cookie `sb-*`.
 - Decisiones de acceso en servidor: `supabase.auth.getUser()`. Nunca confiar en `getSession()` ni en datos del cliente.
@@ -22,7 +22,7 @@
 
 ### Cabeceras HTTP (`next.config.ts`)
 
-CSP (`default-src 'self'`, `object-src 'none'`, `frame-ancestors 'none'`, `form-action 'self'`, orígenes de Supabase en `connect-src` e `img-src`), `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`. Vercel agrega HSTS. `script-src` conserva `'unsafe-inline'`: una CSP con nonce obliga a renderizado dinámico y rompería el ISR; el riesgo de XSS se cubre con la regla de contenido de abajo.
+CSP (`default-src 'self'`, `object-src 'none'`, `frame-ancestors 'none'`, `form-action 'self'`, orígenes de Supabase en `connect-src` e `img-src`, y `challenges.cloudflare.com` para Turnstile), `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`. Vercel agrega HSTS. `script-src` conserva `'unsafe-inline'`: una CSP con nonce obliga a renderizado dinámico y rompería el ISR; el riesgo de XSS se cubre con la regla de contenido de abajo.
 
 ## Datos
 

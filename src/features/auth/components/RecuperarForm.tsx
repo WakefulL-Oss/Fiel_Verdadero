@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { Boton, Campo, MensajeForm } from "@/components/Formulario";
+import { Turnstile } from "@/components/Turnstile";
 import {
   cambiarPassword,
   pedirRecuperacion,
@@ -51,6 +52,7 @@ export function RecuperarForm() {
           defaultValue={pedido.correo}
           required
         />
+        <Turnstile reinicio={pedido} />
         <MensajeForm error={pedido.error} />
         <Boton disabled={pidiendo}>{pidiendo ? "Enviando…" : "Enviar código"}</Boton>
       </form>

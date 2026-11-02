@@ -20,6 +20,7 @@
 - [x] Rama de trabajo `fiel` (local y remota); `main` queda como producción.
 - [x] Login con correo y contraseña: `/login`, `/registro` (código solo al registrarse), `/recuperar`, `/auth/callback`, `src/proxy.ts` (refresco de sesión); botón Entrar/Salir en la portada.
 - [x] Cabeceras de seguridad (CSP y otras) en `next.config.ts`.
+- [x] CAPTCHA (Turnstile) integrado en registro, login, recuperación y reenvío; falta activarlo en Cloudflare y Supabase.
 - [x] Subagentes `planer`, `ena` y `revi` en `.claude/agents/`.
 - [x] Docs de seguridad (`SEGURIDAD.md`) y respaldos (`RESPALDOS.md`); respaldos excluidos de git.
 - [x] Workflow keep-alive y Dependabot en `.github/`.
@@ -28,7 +29,8 @@
 
 1. [ ] Crear el proyecto Supabase `fiel-dev`, apuntar `.env.local` a él y configurar Vercel *Preview* (`GUIA-CONFIGURACION.md`, sección 9). Hasta entonces `npm run dev` usa la BD de producción.
 2. [ ] Secrets de GitHub para el keep-alive y fusionar `fiel` en `main` para que el cron funcione.
-3. [ ] Ajustes de Auth en Supabase: Confirm email, contraseña mínima 8, plantilla **Reset password** con código (`GUIA-CONFIGURACION.md`, sección 5), OTP a 10 min, CAPTCHA, Redirect URLs de producción solo con el dominio.
+3. [ ] Ajustes de Auth en Supabase: Confirm email, contraseña mínima 8, plantilla **Reset password** con código (`GUIA-CONFIGURACION.md`, sección 5), OTP a 10 min, Redirect URLs de producción solo con el dominio.
+3b. [ ] CAPTCHA: crear widget en Cloudflare, Site Key en Vercel y `.env.local`, desplegar, y al final pegar la Secret Key en Supabase (`GUIA-CONFIGURACION.md`, sección 10).
 4. [ ] Probar registro, login y recuperación de punta a punta en local (con `fiel-dev`) y hacerte admin: `update perfiles set rol = 'admin' where id = '<tu-uuid>';`. Tu cuenta antigua (creada por código) no tiene contraseña: usa "Olvidé mi contraseña".
 5. [ ] Facebook: app creada en Meta, **en pausa** (Meta pide verificación del negocio para publicar). Retomar después; el login por código ya funciona sin él.
 6. [ ] Editor de sermones (Tiptap), borradores y notas privadas, con el esquema de contenido de `SEGURIDAD.md`.
