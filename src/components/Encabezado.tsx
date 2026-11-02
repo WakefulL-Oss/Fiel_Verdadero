@@ -1,4 +1,3 @@
-import { BotonTema } from "./BotonTema";
 import { Logo } from "./marca/Logo";
 
 export function Encabezado({
@@ -22,15 +21,16 @@ export function Encabezado({
             <span className="text-[13.5px] text-tenue">{seccion}</span>
           </span>
         )}
-        {nav && <nav className="hidden items-center gap-1 md:flex">{nav}</nav>}
-        <div className="ml-auto flex items-center gap-2">
-          {children}
-          <BotonTema />
-        </div>
+        {nav && <div className="hidden h-full md:flex">{nav}</div>}
+        <div className="ml-auto flex items-center gap-2">{children}</div>
       </div>
       {subnav && (
-        <div className="overflow-x-auto border-t border-linea px-2.5 py-1.5 md:hidden">{subnav}</div>
+        <div className="overflow-x-auto border-t border-linea px-2.5 md:hidden">{subnav}</div>
       )}
     </header>
   );
 }
+
+// Enlace de navegación al estilo de Supabase: sin fondo; el texto se ilumina al pasar el cursor.
+export const ENLACE_NAV =
+  "flex h-full items-center px-2.5 text-sm font-medium no-underline transition-colors duration-200 hover:text-accent focus-visible:text-accent";

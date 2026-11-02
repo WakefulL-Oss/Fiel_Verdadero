@@ -44,7 +44,7 @@ Un módulo no importa de otro `features/*`; comparte vía `lib/` o `components/`
 - El texto de los mockups es de ejemplo: no copiar promesas que la app no cumple (plazos, funciones, correos).
 - Densidad alta: espaciado reducido, `max-w` de lectura, sin heros vacíos ni relleno.
 - Sin textos explicativos, subtítulos ni instrucciones innecesarias; etiquetas cortas, estados vacíos de una línea.
-- Marca en `docs/marca/README.md` (paleta púrpura real, Lora + Roboto). Tokens de `globals.css` (fondos `background`/`surface`/`panel`/`realce`; texto `foreground`/`muted`/`tenue`; bordes `border`/`border-fuerte`/`border-suave`/`linea`; `accent` = oro, `anillo`, `aviso*`, `primario*`, `error`, `exito`); controles en `components/Formulario.tsx` (`ESTILO_BOTON`, `Campo`, `Grupo`); `font-display` (Lora) solo en títulos. El oro no se usa en texto pequeño (contraste). Soportar modo oscuro.
+- Marca en `docs/marca/README.md` (paleta púrpura real, Lora + Roboto). Tokens de `globals.css` (fondos `background`/`surface`/`panel`/`realce`; texto `foreground`/`muted`/`tenue`; bordes `border`/`border-fuerte`/`border-suave`/`linea`; `accent` = oro, `anillo`, `aviso*`, `primario*`, `error`, `exito`); controles en `components/Formulario.tsx` (`boton(variante, tamano)`, `Campo`, `Grupo`), menús en `components/ui/Menu.tsx`; botones, nav y menús siguen `docs/diseno/SUPABASE.md`; `font-display` (Lora) solo en títulos. El oro no se usa en texto pequeño (contraste). Soportar modo oscuro.
 - Mobile-first; componentes reutilizables en `src/components/` antes de duplicar clases.
 
 ## Seguridad y licencia

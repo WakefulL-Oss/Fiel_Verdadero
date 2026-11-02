@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Lora, Roboto } from "next/font/google";
+import { SCRIPT_TEMA } from "@/lib/tema";
 import "./globals.css";
 
 const lora = Lora({
@@ -14,9 +15,6 @@ const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500"],
 });
-
-// Script fijo (sin datos de usuario): aplica el tema antes de pintar para evitar el parpadeo.
-const SCRIPT_TEMA = `try{var t=localStorage.getItem("tema");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}`;
 
 export const metadata: Metadata = {
   title: {

@@ -14,10 +14,9 @@ export function Logo({ grande = false }: { grande?: boolean }) {
     <Link
       href="/"
       aria-label="Fiel y Verdadero, inicio"
-      className={`flex items-center gap-3.5 ${grande ? "sm:gap-[18px]" : ""}`}
+      className="flex items-center gap-2"
     >
-      <Menora className={`w-auto text-foreground h-8 ${grande ? "sm:h-[38px]" : ""}`} />
-      <span aria-hidden className={`w-[1.5px] bg-border h-6 ${grande ? "sm:h-8" : ""}`} />
+      <Menora className={`h-8 w-auto text-foreground ${grande ? "sm:h-[38px]" : ""}`} />
       <Nombre className="text-xl sm:text-2xl" />
     </Link>
   );

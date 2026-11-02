@@ -1,18 +1,29 @@
 import type { ComponentProps } from "react";
 
-const PULSAR = "transition-[background-color,border-color,transform] duration-150 ease-salida active:scale-[0.97]";
+// Botones al estilo de Supabase (packages/ui Button): sombras en vez de borde, curva
+// cubic-bezier(0.22,1,0.36,1) de 200 ms y escala 0.97 al pulsar.
+const BASE =
+  "relative inline-flex cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap no-underline transition-[background-color,color,scale] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50";
 
-const PRIMARIO = `inline-flex items-center justify-center gap-2 rounded-lg border border-primario bg-primario font-medium whitespace-nowrap text-primario-texto hover:bg-primario-hover disabled:opacity-60 ${PULSAR}`;
-const SECUNDARIO = `inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-surface font-medium whitespace-nowrap text-foreground hover:border-border-fuerte hover:bg-panel disabled:opacity-60 ${PULSAR}`;
-
-export const ESTILO_BOTON = {
-  primario: `${PRIMARIO} h-[38px] px-4 text-sm`,
-  secundario: `${SECUNDARIO} h-9 px-3 text-[13.5px]`,
-  secundarioGrande: `${SECUNDARIO} h-[38px] px-4 text-sm`,
-  primarioChico: `${PRIMARIO} h-8 px-3 text-[13px]`,
-  secundarioChico: `${SECUNDARIO} h-8 px-3 text-[13px]`,
-  fantasma: `inline-flex h-8 items-center gap-1.5 rounded-md px-2 text-[13px] font-medium text-muted hover:bg-realce hover:text-foreground ${PULSAR}`,
+const VARIANTES = {
+  primario:
+    "bg-primario bg-[linear-gradient(to_bottom,rgb(255_255_255/0.015),rgb(0_0_0/0.01))] text-primario-texto shadow-[var(--sombra-boton-elevada)] hover:bg-primario-hover",
+  normal: "bg-surface text-foreground shadow-[var(--sombra-boton)] hover:bg-realce",
+  texto: "text-muted hover:bg-realce hover:text-foreground",
 };
+
+const TAMANOS = {
+  chico: "h-[26px] rounded-md px-2.5 text-xs",
+  mediano: "h-[34px] rounded-[9px] px-3 text-sm",
+  grande: "h-[38px] rounded-[9px] px-4 text-sm",
+};
+
+type Variante = keyof typeof VARIANTES;
+type Tamano = keyof typeof TAMANOS;
+
+export function boton(variante: Variante = "primario", tamano: Tamano = "grande") {
+  return `${BASE} ${VARIANTES[variante]} ${TAMANOS[tamano]}`;
+}
 
 const ESTILO_CAMPO =
   "h-9 w-full rounded-lg border border-border bg-surface px-2.5 text-sm text-foreground outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-tenue hover:border-border-fuerte focus:border-accent focus:shadow-[0_0_0_3px_var(--anillo)]";
@@ -63,11 +74,12 @@ export function Tecla({ children, oscura = false }: { children: React.ReactNode;
 }
 
 export function Boton({
-  variante = "primario",
+  variante,
+  tamano,
   className = "",
   ...props
-}: ComponentProps<"button"> & { variante?: keyof typeof ESTILO_BOTON }) {
-  return <button {...props} className={`${ESTILO_BOTON[variante]} ${className}`} />;
+}: ComponentProps<"button"> & { variante?: Variante; tamano?: Tamano }) {
+  return <button {...props} className={`${boton(variante, tamano)} ${className}`} />;
 }
 
 export function MensajeForm({ error, aviso }: { error?: string; aviso?: string }) {

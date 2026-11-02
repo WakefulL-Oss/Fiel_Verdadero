@@ -1,5 +1,5 @@
 import { Mail } from "lucide-react";
-import { ESTILO_BOTON } from "@/components/Formulario";
+import { boton } from "@/components/Formulario";
 
 const BUZONES = [
   { nombre: "Gmail", href: "https://mail.google.com/mail/u/0/#inbox" },
@@ -15,7 +15,7 @@ export function AbrirCorreo() {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${ESTILO_BOTON.secundario} flex-1 no-underline`}
+          className={`${boton("normal", "mediano")} flex-1`}
         >
           <Mail size={14} />
           Abrir {nombre}

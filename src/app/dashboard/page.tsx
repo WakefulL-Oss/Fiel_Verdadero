@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { Encabezado } from "@/components/Encabezado";
 import { Footer } from "@/components/Footer";
-import { BotonSalir } from "@/features/auth/components/BotonSalir";
+import { BotonSesion } from "@/features/auth/components/BotonSesion";
 import { obtenerPerfil, obtenerUsuario } from "@/features/auth/queries";
 
 export const metadata: Metadata = { title: "Dashboard" };
@@ -30,7 +30,7 @@ export default function Dashboard() {
   return (
     <>
       <Encabezado seccion="Dashboard">
-        <BotonSalir />
+        <BotonSesion dashboard={false} />
       </Encabezado>
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-10 sm:px-6 lg:px-8">
         <Suspense fallback={<div className="h-9 w-48 rounded-lg bg-realce" />}>

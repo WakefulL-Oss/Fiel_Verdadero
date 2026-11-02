@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ENLACE_NAV } from "../Encabezado";
 import { ENLACES_LEGALES } from "../Footer";
 
 export function NavLegal({ className = "" }: { className?: string }) {
   const ruta = usePathname();
   return (
-    <nav className={`items-center gap-0.5 ${className}`}>
+    <nav className={`h-full items-stretch ${className}`}>
       {ENLACES_LEGALES.map(({ href, texto }) => {
         const activo = ruta === href;
         return (
@@ -15,9 +16,7 @@ export function NavLegal({ className = "" }: { className?: string }) {
             key={href}
             href={href}
             aria-current={activo ? "page" : undefined}
-            className={`flex h-8 shrink-0 items-center rounded-lg px-2.5 text-[13px] whitespace-nowrap transition-colors hover:bg-realce hover:text-foreground ${
-              activo ? "bg-realce font-medium text-foreground" : "text-muted"
-            }`}
+            className={`${ENLACE_NAV} shrink-0 whitespace-nowrap ${activo ? "text-foreground" : "text-tenue"}`}
           >
             {texto}
           </Link>

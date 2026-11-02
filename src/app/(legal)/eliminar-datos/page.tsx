@@ -10,7 +10,7 @@ import {
   Trash2,
   UserRound,
 } from "lucide-react";
-import { ESTILO_BOTON } from "@/components/Formulario";
+import { boton } from "@/components/Formulario";
 import { EncabezadoLegal, Tarjeta } from "@/components/LegalPage";
 import { CONTACT_EMAIL, SITE_NAME } from "@/lib/site";
 
@@ -97,7 +97,7 @@ export default function EliminarDatos() {
             <span className="text-[12.5px] text-tenue">El borrado no se puede deshacer.</span>
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=${ASUNTO}`}
-              className={`${ESTILO_BOTON.primarioChico} no-underline`}
+              className={boton("primario", "chico")}
             >
               <Mail size={14} />
               Escribir solicitud
