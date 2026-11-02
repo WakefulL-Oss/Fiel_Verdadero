@@ -41,4 +41,4 @@
 11. [ ] Subida de portadas (WebP, máx. 300 KB).
 12. [ ] Reportes y panel de moderación.
 13. [ ] Primer respaldo manual de producción (`RESPALDOS.md`).
-14. [ ] Logo.
+14. [ ] Logo (hay un icono provisional con la letra F en `src/app/icon.svg`).

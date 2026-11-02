@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .fondo { fill: #8a5a2b; }
+    .letra { fill: #faf7f2; }
+    @media (prefers-color-scheme: dark) {
+      .fondo { fill: #d9a566; }
+      .letra { fill: #17130f; }
+    }
+  </style>
+  <rect class="fondo" width="64" height="64" rx="14"/>
+  <path class="letra" d="M22 14h24v7H31v8h13v7H31v14h-9z"/>
+</svg>
