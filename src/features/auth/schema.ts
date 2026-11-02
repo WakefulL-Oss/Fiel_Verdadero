@@ -15,7 +15,11 @@ export const loginSchema = correoSchema.extend({
   password: z.string().min(1, "Escribe tu contraseña").max(72),
 });
 
-export const registroSchema = correoSchema.extend({ password: passwordSchema });
+export const registroSchema = correoSchema.extend({
+  nombre: z.string().trim().min(2, "Escribe tu nombre").max(80, "Máximo 80 caracteres"),
+  password: passwordSchema,
+  acepto: z.literal("on", "Acepta los términos y la política de privacidad"),
+});
 
 export const codigoSchema = correoSchema.extend({
   codigo: z.string().trim().regex(/^\d{6,8}$/, "Código no válido"),

@@ -8,14 +8,19 @@ export async function BotonSesion() {
 
   if (!usuario) {
     return (
-      <Link href="/login" className={`${ESTILO_BOTON.secundario} py-1.5`}>
-        Entrar
-      </Link>
+      <div className="flex gap-2">
+        <Link href="/login" className={ESTILO_BOTON.secundarioChico}>
+          Entrar
+        </Link>
+        <Link href="/registro" className={ESTILO_BOTON.primarioChico}>
+          Crear cuenta
+        </Link>
+      </div>
     );
   }
   return (
     <form action={cerrarSesion}>
-      <button className="text-sm text-muted hover:text-foreground">Salir</button>
+      <button className={ESTILO_BOTON.secundarioChico}>Salir</button>
     </form>
   );
 }

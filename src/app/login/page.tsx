@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { AccesoCentrado } from "@/features/auth/components/Acceso";
 import { LoginForm } from "@/features/auth/components/LoginForm";
 import { rutaSegura } from "@/lib/ruta-segura";
 
@@ -13,11 +14,10 @@ async function Formulario({ searchParams }: Pick<PageProps<"/login">, "searchPar
 
 export default function Login(props: PageProps<"/login">) {
   return (
-    <main className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center px-6 py-16">
-      <h1 className="mb-6 font-display text-3xl font-semibold">Entrar</h1>
+    <AccesoCentrado enlace={{ pregunta: "¿Nuevo aquí?", texto: "Crear cuenta", href: "/registro" }}>
       <Suspense>
         <Formulario searchParams={props.searchParams} />
       </Suspense>
-    </main>
+    </AccesoCentrado>
   );
 }

@@ -23,7 +23,7 @@ src/components/     UI compartida genérica (sin lógica de dominio)
 src/lib/            supabase/{client,server}.ts, site.ts, utilidades puras
 src/data/           JSON estático (Biblia dominio público, libros)
 supabase/migrations SQL versionado
-docs/               ESTADO.md, ARQUITECTURA.md, GUIA-CONFIGURACION.md, marca/ (fuente de la marca, no se sirve)
+docs/               ESTADO.md, ARQUITECTURA.md, GUIA-CONFIGURACION.md, marca/ (fuente de la marca), diseno/ (mockups de Claude Design); nada de docs/ se sirve
 src/components/marca/ Menora y Logo como componentes (siguen el modo oscuro)
 public/marca/       solo los assets servidos (iconos PWA)
 ```
@@ -40,9 +40,11 @@ Un módulo no importa de otro `features/*`; comparte vía `lib/` o `components/`
 - Carga pesada (PDF, editor) con `dynamic import`. Imágenes: WebP ≤ 300 KB.
 
 ## Front compacto
+- **Diseño de referencia:** `docs/diseno/Fiel y Verdadero v2.dc.html` (ábrelo en el navegador). Toda vista nueva sigue ese diseño: bordes de 1px en vez de sombras, controles de 32–38px, radios de 8px (tarjetas 12px), iconos `lucide-react`. Si una vista no está en el mockup, se deriva de sus piezas, no se inventa un estilo nuevo.
+- El texto de los mockups es de ejemplo: no copiar promesas que la app no cumple (plazos, funciones, correos).
 - Densidad alta: espaciado reducido, `max-w` de lectura, sin heros vacíos ni relleno.
 - Sin textos explicativos, subtítulos ni instrucciones innecesarias; etiquetas cortas, estados vacíos de una línea.
-- Marca en `docs/marca/README.md` (paleta púrpura real, Lora + Roboto). Tokens de `globals.css` (`background`, `surface`, `foreground`, `muted`, `accent` = oro, `border`, `border-suave`, `primario`, `error`); `font-display` (Lora) solo en títulos. El oro no se usa en texto pequeño (contraste). Soportar modo oscuro.
+- Marca en `docs/marca/README.md` (paleta púrpura real, Lora + Roboto). Tokens de `globals.css` (fondos `background`/`surface`/`panel`/`realce`; texto `foreground`/`muted`/`tenue`; bordes `border`/`border-fuerte`/`border-suave`/`linea`; `accent` = oro, `anillo`, `aviso*`, `primario*`, `error`, `exito`); controles en `components/Formulario.tsx` (`ESTILO_BOTON`, `Campo`, `Grupo`); `font-display` (Lora) solo en títulos. El oro no se usa en texto pequeño (contraste). Soportar modo oscuro.
 - Mobile-first; componentes reutilizables en `src/components/` antes de duplicar clases.
 
 ## Seguridad y licencia

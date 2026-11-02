@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&amp;family=Roboto:wght@400;500&amp;family=Frank+Ruhl+Libre:wght@700&amp;display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="icons.js"></script>
+<style>
+body{margin:0;background:#E9E1DC;font-family:Roboto,Arial,sans-serif;color:#5C4A5C;-webkit-font-smoothing:antialiased}
+a{color:#3A1E3C;text-decoration-color:#B8892E}a:hover{color:#B8892E}
+button{font-family:inherit}
+button:focus-visible,input:focus-visible{outline:2px solid #B8892E;outline-offset:2px}
+</style>
+</helmet>
+
+<section data-screen-label="Ronda 1 · Navegación" style="padding:72px;display:flex;flex-direction:column;gap:48px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:760px">
+    <span style="font:500 12px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Ronda 1 · Inicio y Editor de sermón</span>
+    <h1 style="margin:0;font:700 44px/1.1 Lora,Georgia,serif;color:#3A1E3C">Dos variantes de navegación</h1>
+    <p style="margin:0;font-size:16px;line-height:1.6;text-wrap:pretty"><a href="#1a">1a</a> usa una barra lateral fija que en móvil se convierte en una barra de pestañas inferior. <a href="#1b">1b</a> usa una barra superior con filtros en columna, y en móvil un menú y un botón flotante para crear.</p>
+  </div>
+
+  <div style="display:flex;gap:96px;align-items:flex-start;flex-wrap:wrap">
+
+    <!-- ============ 1a · BARRA LATERAL ============ -->
+    <div id="1a" style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="background:#3A1E3C;color:#F5F0EC;font:600 15px Lora,serif;padding:6px 12px;border-radius:9px">1a</span>
+        <span style="font:600 23px Lora,serif;color:#3A1E3C">Barra lateral</span>
+      </div>
+
+      <span style="font:500 12px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#5C4A5C">Inicio · Escritorio</span>
+      <div data-screen-label="1a Inicio escritorio" style="width:1280px;height:900px;display:flex;background:#F5F0EC;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(58,30,60,.12),0 8px 24px rgba(58,30,60,.08)">
+        <aside style="width:252px;flex-shrink:0;border-right:1px solid #E6DCDD;padding:26px 18px;display:flex;flex-direction:column;gap:26px">
+          <div style="display:flex;align-items:center;gap:12px;padding:0 6px">
+            <img src="assets/menora-color.svg" alt="" style="height:28px">
+            <span style="width:1.5px;height:26px;background:#D6C8CC"></span>
+            <span style="font:700 17px Lora,serif;color:#3A1E3C;white-space:nowrap">Fiel <i style="font-weight:500;color:#B8892E">y</i> Verdadero</span>
+          </div>
+          <button style="display:flex;align-items:center;gap:10px;background:#3A1E3C;color:#F5F0EC;font:500 14px Roboto,Arial,sans-serif;padding:12px 16px;border-radius:9px;border:none;cursor:pointer" style-hover="background:#4E2B51"><fv-icon name="pen-line" size="16"></fv-icon>Crear sermón</button>
+          <nav style="display:flex;flex-direction:column;gap:2px">
+            <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;background:#E6DCDD;color:#3A1E3C;font:500 14px Roboto,Arial,sans-serif"><fv-icon name="house" size="17"></fv-icon>Inicio</span>
+            <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;color:#5C4A5C;font-size:14px"><fv-icon name="scroll-text" size="17"></fv-icon>Sermones</span>
+            <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;color:#5C4A5C;font-size:14px"><fv-icon name="book-open" size="17"></fv-icon>Estudios bíblicos</span>
+            <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;color:#5C4A5C;font-size:14px"><fv-icon name="quote" size="17"></fv-icon>Citas y frases</span>
+            <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;color:#5C4A5C;font-size:14px"><fv-icon name="users" size="17"></fv-icon>Comunidad</span>
+          </nav>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E;padding:0 12px 8px">Mi escritorio</span>
+            <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;color:#5C4A5C;font-size:14px"><fv-icon name="file-pen-line" size="17"></fv-icon><span style="flex:1">Borradores</span><span style="font-size:12px;color:#3A1E3C;background:#E6DCDD;padding:2px 8px;border-radius:8px">3</span></span>
+            <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;color:#5C4A5C;font-size:14px"><fv-icon name="bookmark" size="17"></fv-icon>Guardados</span>
+            <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;color:#5C4A5C;font-size:14px"><fv-icon name="library" size="17"></fv-icon>Mis publicaciones</span>
+          </div>
+          <div style="margin-top:auto;display:flex;flex-direction:column;gap:16px">
+            <sc-if value="{{ showHebrew }}" hint-placeholder-val="{{ true }}">
+              <span dir="rtl" style="font:700 18px 'Frank Ruhl Libre',serif;color:#B8892E;padding:0 12px;text-align:left">נאמן ואמת</span>
+            </sc-if>
+            <div style="display:flex;align-items:center;gap:10px;padding:12px;border-top:1px solid #E6DCDD">
+              <span style="width:36px;height:36px;border-radius:50%;background:#3A1E3C;color:#D9AE52;font:600 13px Lora,serif;display:flex;align-items:center;justify-content:center">DR</span>
+              <div style="display:flex;flex-direction:column;flex:1;min-width:0"><span style="font:500 14px Roboto,Arial,sans-serif;color:#3A1E3C">Daniel Ríos</span><span style="font-size:12px">Ver perfil</span></div>
+              <fv-icon name="settings" size="17"></fv-icon>
+            </div>
+          </div>
+        </aside>
+        <main style="flex:1;min-width:0;display:flex;flex-direction:column">
+          <div style="height:68px;flex-shrink:0;border-bottom:1px solid #E6DCDD;display:flex;align-items:center;gap:16px;padding:0 40px">
+            <div style="flex:1;max-width:520px;display:flex;align-items:center;gap:10px;background:#FBF8F5;box-shadow:inset 0 0 0 1.5px #D6C8CC;border-radius:9px;padding:10px 14px;color:#5C4A5C"><fv-icon name="search" size="16"></fv-icon><span style="font-size:14px">Buscar sermones, versículos, autores…</span><span style="margin-left:auto;font-size:12px;border:1px solid #D6C8CC;border-radius:6px;padding:1px 6px">⌘K</span></div>
+            <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+              <button style="display:flex;align-items:center;gap:8px;background:transparent;color:#3A1E3C;font:500 14px Roboto,Arial,sans-serif;padding:10px 16px;border-radius:9px;border:none;box-shadow:inset 0 0 0 1.5px #D6C8CC;cursor:pointer"><fv-icon name="quote" size="16"></fv-icon>Publicar cita</button>
+              <span style="width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#3A1E3C;position:relative"><fv-icon name="bell" size="19"></fv-icon><span style="position:absolute;top:9px;right:10px;width:7px;height:7px;border-radius:50%;background:#B8892E"></span></span>
+            </div>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;display:flex;gap:40px;padding:32px 40px">
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:20px">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Inicio</span>
+                <h1 style="margin:0;font:700 34px/1.1 Lora,Georgia,serif;color:#3A1E3C">Publicaciones recientes</h1>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:4px;border-bottom:1px solid #E6DCDD">
+                <div style="display:flex;gap:6px;flex-wrap:wrap;padding-bottom:14px">
+                  <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+                    <button onClick="{{ f.onClick }}" style="display:flex;border:none;padding:0;background:transparent;cursor:pointer">
+                      <sc-if value="{{ f.active }}"><span style="background:#3A1E3C;color:#F5F0EC;font:500 13px Roboto,Arial,sans-serif;padding:8px 14px;border-radius:9px">{{ f.label }}</span></sc-if>
+                      <sc-if value="{{ f.inactive }}"><span style="color:#3A1E3C;font:500 13px Roboto,Arial,sans-serif;padding:8px 14px;border-radius:9px;box-shadow:inset 0 0 0 1.5px #D6C8CC">{{ f.label }}</span></sc-if>
+                    </button>
+                  </sc-for>
+                </div>
+                <div style="display:flex;gap:8px;padding-bottom:14px">
+                  <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:#3A1E3C;padding:8px 12px;border-radius:9px;box-shadow:inset 0 0 0 1.5px #D6C8CC">Tema: Todos<fv-icon name="chevron-down" size="14"></fv-icon></span>
+                  <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:#3A1E3C;padding:8px 12px;border-radius:9px;box-shadow:inset 0 0 0 1.5px #D6C8CC">Recientes<fv-icon name="arrow-down-up" size="14"></fv-icon></span>
+                </div>
+              </div>
+              <sc-for list="{{ posts }}" as="p" hint-placeholder-count="4">
+                <article style="background:#FBF8F5;border:1px solid #E6DCDD;border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                    <div style="display:flex;align-items:center;gap:10px"><span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">{{ p.type }}</span><span style="width:3px;height:3px;border-radius:50%;background:#D6C8CC"></span><span style="font-size:12px">{{ p.topic }}</span></div>
+                    <span style="font-size:12px">{{ p.time }}</span>
+                  </div>
+                  <sc-if value="{{ p.isText }}">
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                      <h3 style="margin:0;font:600 21px/1.3 Lora,Georgia,serif;color:#3A1E3C">{{ p.title }}</h3>
+                      <p style="margin:0;font-size:15px;line-height:1.6;text-wrap:pretty">{{ p.excerpt }}</p>
+                      <span style="align-self:flex-start;display:flex;align-items:center;gap:6px;font:500 12px Roboto,Arial,sans-serif;color:#3A1E3C;background:#F1E9E3;padding:5px 10px;border-radius:8px"><fv-icon name="book-open" size="13"></fv-icon>{{ p.ref }}</span>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ p.isQuote }}">
+                    <blockquote style="margin:4px 0;border-left:3px solid #B8892E;padding-left:16px;display:flex;flex-direction:column;gap:8px">
+                      <span style="font:italic 500 21px/1.45 Lora,Georgia,serif;color:#3A1E3C;text-wrap:pretty">{{ p.quote }}</span>
+                      <span style="font-size:13px">— {{ p.source }}</span>
+                    </blockquote>
+                  </sc-if>
+                  <div style="display:flex;align-items:center;gap:10px;border-top:1px solid #E6DCDD;padding-top:12px">
+                    <span style="width:28px;height:28px;border-radius:50%;background:#3A1E3C;color:#D9AE52;font:600 11px Lora,serif;display:flex;align-items:center;justify-content:center">{{ p.initials }}</span>
+                    <span style="font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C">{{ p.author }}</span>
+                    <span style="font-size:12px">{{ p.meta }}</span>
+                    <div style="margin-left:auto;display:flex;align-items:center;gap:16px;font-size:13px;color:#5C4A5C">
+                      <span style="display:flex;align-items:center;gap:5px"><fv-icon name="heart" size="16"></fv-icon>{{ p.likes }}</span>
+                      <span style="display:flex;align-items:center;gap:5px"><fv-icon name="message-circle" size="16"></fv-icon>{{ p.comments }}</span>
+                      <fv-icon name="bookmark" size="16"></fv-icon>
+                      <fv-icon name="share-2" size="16"></fv-icon>
+                    </div>
+                  </div>
+                </article>
+              </sc-for>
+            </div>
+            <sc-if value="{{ showRail }}" hint-placeholder-val="{{ true }}">
+              <div style="width:288px;flex-shrink:0;display:flex;flex-direction:column;gap:24px">
+                <div style="background:#3A1E3C;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px">
+                  <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#D9AE52">Versículo del día</span>
+                  <span style="font:italic 500 18px/1.5 Lora,Georgia,serif;color:#F5F0EC">«Yo soy el buen pastor; el buen pastor su vida da por las ovejas.»</span>
+                  <span style="font-size:13px;color:#F5F0EC">Juan 10:11 · RVR1960</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <h3 style="margin:0;font:600 18px/1.3 Lora,serif;color:#3A1E3C">Temas</h3>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px">
+                    <span style="font-size:13px;color:#3A1E3C;padding:6px 10px;border-radius:8px;box-shadow:inset 0 0 0 1px #D6C8CC">Gracia</span>
+                    <span style="font-size:13px;color:#3A1E3C;padding:6px 10px;border-radius:8px;box-shadow:inset 0 0 0 1px #D6C8CC">Oración</span>
+                    <span style="font-size:13px;color:#3A1E3C;padding:6px 10px;border-radius:8px;box-shadow:inset 0 0 0 1px #D6C8CC">Familia</span>
+                    <span style="font-size:13px;color:#3A1E3C;padding:6px 10px;border-radius:8px;box-shadow:inset 0 0 0 1px #D6C8CC">Esperanza</span>
+                    <span style="font-size:13px;color:#3A1E3C;padding:6px 10px;border-radius:8px;box-shadow:inset 0 0 0 1px #D6C8CC">Salmos</span>
+                    <span style="font-size:13px;color:#3A1E3C;padding:6px 10px;border-radius:8px;box-shadow:inset 0 0 0 1px #D6C8CC">Discipulado</span>
+                    <span style="font-size:13px;color:#3A1E3C;padding:6px 10px;border-radius:8px;box-shadow:inset 0 0 0 1px #D6C8CC">Adviento</span>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid #E6DCDD;padding-top:20px">
+                  <h3 style="margin:0 0 8px;font:600 18px/1.3 Lora,serif;color:#3A1E3C">Autores para seguir</h3>
+                  <sc-for list="{{ authors }}" as="a" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:10px;padding:8px 0">
+                      <span style="width:34px;height:34px;border-radius:50%;background:#3A1E3C;color:#D9AE52;font:600 12px Lora,serif;display:flex;align-items:center;justify-content:center">{{ a.initials }}</span>
+                      <div style="flex:1;display:flex;flex-direction:column"><span style="font:500 14px Roboto,Arial,sans-serif;color:#3A1E3C">{{ a.name }}</span><span style="font-size:12px">{{ a.role }}</span></div>
+                      <span style="font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C;padding:6px 12px;border-radius:9px;box-shadow:inset 0 0 0 1.5px #D6C8CC">Seguir</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </main>
+      </div>
+
+      <span style="font:500 12px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#5C4A5C;margin-top:24px">Editor de sermón · Escritorio</span>
+      <div data-screen-label="1a Editor escritorio" style="width:1280px;height:980px;display:flex;background:#F5F0EC;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(58,30,60,.12),0 8px 24px rgba(58,30,60,.08)">
+        <aside style="width:72px;flex-shrink:0;border-right:1px solid #E6DCDD;padding:22px 0;display:flex;flex-direction:column;align-items:center;gap:8px;color:#5C4A5C">
+          <img src="assets/menora-simplificada.svg" alt="" style="height:26px;margin-bottom:18px">
+          <span style="width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center"><fv-icon name="house" size="19"></fv-icon></span>
+          <span style="width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center"><fv-icon name="scroll-text" size="19"></fv-icon></span>
+          <span style="width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center"><fv-icon name="book-open" size="19"></fv-icon></span>
+          <span style="width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center"><fv-icon name="quote" size="19"></fv-icon></span>
+          <span style="width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center"><fv-icon name="users" size="19"></fv-icon></span>
+          <span style="width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:#E6DCDD;color:#3A1E3C"><fv-icon name="file-pen-line" size="19"></fv-icon></span>
+          <span style="margin-top:auto;width:36px;height:36px;border-radius:50%;background:#3A1E3C;color:#D9AE52;font:600 13px Lora,serif;display:flex;align-items:center;justify-content:center">DR</span>
+        </aside>
+        <main style="flex:1;min-width:0;display:flex;flex-direction:column">
+          <div style="height:68px;flex-shrink:0;border-bottom:1px solid #E6DCDD;display:flex;align-items:center;gap:16px;padding:0 28px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;min-width:0"><span>Borradores</span><fv-icon name="chevron-right" size="14"></fv-icon><span style="color:#3A1E3C;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">El pastor que deja las noventa y nueve</span></div>
+            <span style="display:flex;align-items:center;gap:6px;font-size:12px;white-space:nowrap"><fv-icon name="check-check" size="15"></fv-icon>Guardado hace 1 min</span>
+            <div style="margin-left:auto;display:flex;gap:8px">
+              <button style="display:flex;align-items:center;gap:8px;background:transparent;color:#3A1E3C;font:500 14px Roboto,Arial,sans-serif;padding:10px 16px;border-radius:9px;border:none;box-shadow:inset 0 0 0 1.5px #D6C8CC;cursor:pointer;white-space:nowrap"><fv-icon name="file-text" size="16"></fv-icon>Vista previa PDF</button>
+              <button style="display:flex;align-items:center;gap:8px;background:transparent;color:#3A1E3C;font:500 14px Roboto,Arial,sans-serif;padding:10px 16px;border-radius:9px;border:none;box-shadow:inset 0 0 0 1.5px #D6C8CC;cursor:pointer;white-space:nowrap">Guardar borrador</button>
+              <button style="display:flex;align-items:center;gap:8px;background:#3A1E3C;color:#F5F0EC;font:500 14px Roboto,Arial,sans-serif;padding:10px 16px;border-radius:9px;border:none;cursor:pointer">Publicar</button>
+            </div>
+          </div>
+          <div style="flex:1;min-height:0;display:flex">
+            <div style="flex:1;min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;padding:24px 32px;gap:20px">
+              <div style="display:flex;align-items:center;gap:4px;background:#FBF8F5;border:1px solid #E6DCDD;border-radius:10px;padding:5px;color:#3A1E3C">
+                <span style="width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px"><fv-icon name="bold" size="16"></fv-icon></span>
+                <span style="width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px"><fv-icon name="italic" size="16"></fv-icon></span>
+                <span style="width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px"><fv-icon name="underline" size="16"></fv-icon></span>
+                <span style="width:1px;height:20px;background:#D6C8CC;margin:0 4px"></span>
+                <span style="width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px"><fv-icon name="list" size="16"></fv-icon></span>
+                <span style="width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px"><fv-icon name="text-quote" size="16"></fv-icon></span>
+                <span style="width:1px;height:20px;background:#D6C8CC;margin:0 4px"></span>
+                <span style="display:flex;align-items:center;gap:6px;font:500 13px Roboto,Arial,sans-serif;padding:8px 12px;border-radius:8px;background:#F1E9E3"><fv-icon name="book-open" size="15"></fv-icon>Insertar versículo</span>
+                <span style="display:flex;align-items:center;gap:6px;font:500 13px Roboto,Arial,sans-serif;padding:8px 12px;border-radius:8px"><fv-icon name="list-plus" size="15"></fv-icon>Punto</span>
+                <span style="display:flex;align-items:center;gap:6px;font:500 13px Roboto,Arial,sans-serif;padding:8px 12px;border-radius:8px"><fv-icon name="lightbulb" size="15"></fv-icon>Ilustración</span>
+              </div>
+              <div style="width:100%;max-width:720px;background:#FFFDFB;border-radius:14px;box-shadow:0 1px 2px rgba(58,30,60,.12),0 8px 24px rgba(58,30,60,.08);padding:48px 56px;display:flex;flex-direction:column;gap:28px">
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Sermón · Borrador</span>
+                  <h1 style="margin:0;font:700 38px/1.1 Lora,Georgia,serif;color:#3A1E3C">El pastor que deja las noventa y nueve</h1>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Texto base</span><span style="display:flex;align-items:center;gap:6px;font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C"><fv-icon name="repeat" size="14"></fv-icon>Cambiar</span></div>
+                  <blockquote style="margin:0;border-left:3px solid #B8892E;padding-left:16px;display:flex;flex-direction:column;gap:6px">
+                    <span style="font:italic 500 18px/1.55 Lora,Georgia,serif;color:#3A1E3C">«¿Qué hombre de vosotros, teniendo cien ovejas, si pierde una de ellas, no deja las noventa y nueve en el desierto, y va tras la que se perdió, hasta encontrarla?»</span>
+                    <span style="font-size:13px">Lucas 15:4 · RVR1960</span>
+                  </blockquote>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Introducción</span>
+                  <p style="margin:0;font-size:16px;line-height:1.6;text-wrap:pretty">Jesús cuenta esta parábola rodeado de dos públicos: los pecadores que se acercan a oírle y los religiosos que murmuran. A unos y a otros les muestra cómo es el corazón de Dios cuando algo suyo se pierde.</p>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Puntos</span><span style="font-size:12px">Arrastra o usa las flechas para reordenar</span></div>
+                  <sc-for list="{{ points }}" as="p" hint-placeholder-count="3">
+                    <div style="display:flex;gap:12px;padding:16px 18px 16px 8px;border:1px solid #E6DCDD;border-radius:14px;background:#FBF8F5">
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#5C4A5C">
+                        <span style="cursor:grab;padding:4px"><fv-icon name="grip-vertical" size="16"></fv-icon></span>
+                        <button onClick="{{ p.onUp }}" style="width:26px;height:26px;border:none;background:transparent;color:#5C4A5C;cursor:pointer;border-radius:6px;display:flex;align-items:center;justify-content:center" style-hover="background:#E6DCDD"><fv-icon name="chevron-up" size="15"></fv-icon></button>
+                        <button onClick="{{ p.onDown }}" style="width:26px;height:26px;border:none;background:transparent;color:#5C4A5C;cursor:pointer;border-radius:6px;display:flex;align-items:center;justify-content:center" style-hover="background:#E6DCDD"><fv-icon name="chevron-down" size="15"></fv-icon></button>
+                      </div>
+                      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+                        <div style="display:flex;align-items:baseline;gap:12px">
+                          <span style="font:600 19px Lora,serif;color:#B8892E;min-width:24px">{{ p.num }}.</span>
+                          <span style="font:600 19px/1.3 Lora,Georgia,serif;color:#3A1E3C;flex:1">{{ p.title }}</span>
+                          <span style="display:flex;align-items:center;gap:5px;font:500 12px Roboto,Arial,sans-serif;color:#3A1E3C;background:#F1E9E3;padding:4px 9px;border-radius:8px;white-space:nowrap"><fv-icon name="book-open" size="12"></fv-icon>{{ p.verse }}</span>
+                        </div>
+                        <sc-for list="{{ p.sub }}" as="s" hint-placeholder-count="2">
+                          <div style="display:flex;gap:10px;padding-left:36px;font-size:15px;line-height:1.6"><span style="font:500 15px Lora,serif;color:#B8892E">{{ s.letter }}.</span><span>{{ s.text }}</span></div>
+                        </sc-for>
+                        <span style="display:flex;align-items:center;gap:6px;padding-left:36px;font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C"><fv-icon name="plus" size="14"></fv-icon>Subpunto</span>
+                      </div>
+                    </div>
+                  </sc-for>
+                  <div style="display:flex;align-items:center;gap:8px;justify-content:flex-start;padding:14px 18px;border:1.5px dashed #D6C8CC;border-radius:14px;font:500 14px Roboto,Arial,sans-serif;color:#3A1E3C"><fv-icon name="plus" size="16"></fv-icon>Añadir punto</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Ilustración</span>
+                  <div style="display:flex;gap:12px;background:#F5F0EC;border-radius:14px;padding:16px 18px"><span style="color:#B8892E"><fv-icon name="lightbulb" size="18"></fv-icon></span><p style="margin:0;font-size:15px;line-height:1.6">Un pastor de Galilea contaba sus ovejas cada tarde al cerrar el redil. Una noche faltaba una; no esperó al amanecer.</p></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Aplicación</span>
+                  <p style="margin:0;font-size:16px;line-height:1.6">¿A quién ha puesto Dios en tu camino que se ha alejado? Esta semana, búscalo con nombre y apellido.</p>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Conclusión</span>
+                  <p style="margin:0;font-size:16px;line-height:1.6;color:#A090A0">Escribe la conclusión…</p>
+                </div>
+              </div>
+            </div>
+            <aside style="width:312px;flex-shrink:0;border-left:1px solid #E6DCDD;padding:24px;display:flex;flex-direction:column;gap:28px;overflow:hidden">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <h3 style="margin:0;font:600 18px/1.3 Lora,serif;color:#3A1E3C">Estructura</h3>
+                <div style="display:flex;flex-direction:column;font-size:14px">
+                  <span style="padding:7px 0;border-bottom:1px solid #E6DCDD">Texto base</span>
+                  <span style="padding:7px 0;border-bottom:1px solid #E6DCDD">Introducción</span>
+                  <sc-for list="{{ points }}" as="p" hint-placeholder-count="3">
+                    <span style="display:flex;gap:8px;padding:7px 0 7px 12px;border-bottom:1px solid #E6DCDD;color:#3A1E3C"><span style="font:600 14px Lora,serif;color:#B8892E;min-width:20px">{{ p.num }}</span><span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.title }}</span></span>
+                  </sc-for>
+                  <span style="padding:7px 0;border-bottom:1px solid #E6DCDD">Ilustración</span>
+                  <span style="padding:7px 0;border-bottom:1px solid #E6DCDD">Aplicación</span>
+                  <span style="padding:7px 0">Conclusión</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <h3 style="margin:0;font:600 18px/1.3 Lora,serif;color:#3A1E3C">Insertar versículo</h3>
+                <div style="display:flex;gap:8px">
+                  <div style="flex:1;display:flex;align-items:center;gap:8px;background:#FBF8F5;box-shadow:inset 0 0 0 1.5px #D6C8CC;border-radius:9px;padding:9px 12px;font-size:14px;color:#3A1E3C"><fv-icon name="search" size="15"></fv-icon>Lucas 15:7</div>
+                  <span style="display:flex;align-items:center;gap:6px;font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C;padding:9px 10px;border-radius:9px;box-shadow:inset 0 0 0 1.5px #D6C8CC">RVR1960<fv-icon name="chevron-down" size="13"></fv-icon></span>
+                </div>
+                <div style="background:#FBF8F5;border:1px solid #E6DCDD;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px">
+                  <span style="font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C">Lucas 15:7</span>
+                  <span style="font:italic 500 15px/1.55 Lora,Georgia,serif;color:#3A1E3C">«Os digo que así habrá más gozo en el cielo por un pecador que se arrepiente, que por noventa y nueve justos…»</span>
+                  <div style="display:flex;gap:8px">
+                    <button style="display:flex;align-items:center;gap:6px;background:#3A1E3C;color:#F5F0EC;font:500 13px Roboto,Arial,sans-serif;padding:8px 12px;border-radius:9px;border:none;cursor:pointer"><fv-icon name="corner-down-left" size="14"></fv-icon>Insertar</button>
+                    <button style="background:transparent;color:#3A1E3C;font:500 13px Roboto,Arial,sans-serif;padding:8px 12px;border-radius:9px;border:none;box-shadow:inset 0 0 0 1.5px #D6C8CC;cursor:pointer">Solo referencia</button>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </main>
+      </div>
+
+      <span style="font:500 12px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#5C4A5C;margin-top:24px">Móvil · Inicio y Editor</span>
+      <div style="display:flex;gap:48px">
+        <!-- Mobile Inicio A -->
+        <div data-screen-label="1a Inicio móvil" style="width:390px;height:844px;box-sizing:border-box;border-radius:44px;border:10px solid #2A162C;background:#F5F0EC;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(58,30,60,.18)">
+          <div style="height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font:500 14px Roboto,Arial,sans-serif;color:#3A1E3C"><span>9:41</span><span style="display:flex;gap:6px"><fv-icon name="signal" size="15"></fv-icon><fv-icon name="wifi" size="15"></fv-icon><fv-icon name="battery-full" size="17"></fv-icon></span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 18px 12px">
+            <img src="assets/menora-color.svg" alt="" style="height:24px">
+            <span style="font:700 16px Lora,serif;color:#3A1E3C">Fiel <i style="font-weight:500;color:#B8892E">y</i> Verdadero</span>
+            <span style="margin-left:auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#3A1E3C"><fv-icon name="bell" size="20"></fv-icon></span>
+          </div>
+          <div style="padding:0 18px 12px"><div style="display:flex;align-items:center;gap:10px;background:#FBF8F5;box-shadow:inset 0 0 0 1.5px #D6C8CC;border-radius:9px;padding:12px 14px;font-size:14px"><fv-icon name="search" size="16"></fv-icon>Buscar sermones, versículos…</div></div>
+          <div style="display:flex;gap:6px;padding:0 18px 14px;overflow:hidden;border-bottom:1px solid #E6DCDD">
+            <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+              <button onClick="{{ f.onClick }}" style="display:flex;flex-shrink:0;border:none;padding:0;background:transparent;cursor:pointer">
+                <sc-if value="{{ f.active }}"><span style="background:#3A1E3C;color:#F5F0EC;font:500 13px Roboto,Arial,sans-serif;padding:9px 14px;border-radius:9px;white-space:nowrap">{{ f.label }}</span></sc-if>
+                <sc-if value="{{ f.inactive }}"><span style="color:#3A1E3C;font:500 13px Roboto,Arial,sans-serif;padding:9px 14px;border-radius:9px;box-shadow:inset 0 0 0 1.5px #D6C8CC;white-space:nowrap">{{ f.label }}</span></sc-if>
+              </button>
+            </sc-for>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;padding:14px 14px 0;display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+              <article style="background:#FBF8F5;border:1px solid #E6DCDD;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">{{ p.type }}</span><span style="font-size:12px">{{ p.time }}</span></div>
+                <sc-if value="{{ p.isText }}"><div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font:600 18px/1.3 Lora,Georgia,serif;color:#3A1E3C">{{ p.title }}</h3><span style="align-self:flex-start;display:flex;align-items:center;gap:6px;font:500 12px Roboto,Arial,sans-serif;color:#3A1E3C;background:#F1E9E3;padding:4px 9px;border-radius:8px"><fv-icon name="book-open" size="12"></fv-icon>{{ p.ref }}</span></div></sc-if>
+                <sc-if value="{{ p.isQuote }}"><blockquote style="margin:0;border-left:3px solid #B8892E;padding-left:14px;font:italic 500 17px/1.45 Lora,Georgia,serif;color:#3A1E3C">{{ p.quote }}</blockquote></sc-if>
+                <div style="display:flex;align-items:center;gap:8px"><span style="width:24px;height:24px;border-radius:50%;background:#3A1E3C;color:#D9AE52;font:600 10px Lora,serif;display:flex;align-items:center;justify-content:center">{{ p.initials }}</span><span style="font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C">{{ p.author }}</span><span style="margin-left:auto;display:flex;gap:14px;color:#5C4A5C"><fv-icon name="heart" size="17"></fv-icon><fv-icon name="bookmark" size="17"></fv-icon></span></div>
+              </article>
+            </sc-for>
+          </div>
+          <nav style="flex-shrink:0;height:78px;border-top:1px solid #E6DCDD;background:#F5F0EC;display:grid;grid-template-columns:repeat(5,1fr);align-items:start;padding-top:8px">
+            <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font:500 11px Roboto,Arial,sans-serif;color:#3A1E3C"><fv-icon name="house" size="22"></fv-icon>Inicio</span>
+            <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px"><fv-icon name="compass" size="22"></fv-icon>Explorar</span>
+            <span style="display:flex;justify-content:center"><span style="width:52px;height:44px;border-radius:10px;background:#3A1E3C;color:#F5F0EC;display:flex;align-items:center;justify-content:center"><fv-icon name="pen-line" size="20"></fv-icon></span></span>
+            <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px"><fv-icon name="bookmark" size="22"></fv-icon>Guardados</span>
+            <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px"><fv-icon name="circle-user-round" size="22"></fv-icon>Perfil</span>
+          </nav>
+        </div>
+        <!-- Mobile Editor A -->
+        <div data-screen-label="1a Editor móvil" style="width:390px;height:844px;box-sizing:border-box;border-radius:44px;border:10px solid #2A162C;background:#F5F0EC;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(58,30,60,.18)">
+          <div style="height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font:500 14px Roboto,Arial,sans-serif;color:#3A1E3C"><span>9:41</span><span style="display:flex;gap:6px"><fv-icon name="signal" size="15"></fv-icon><fv-icon name="wifi" size="15"></fv-icon><fv-icon name="battery-full" size="17"></fv-icon></span></div>
+          <div style="display:flex;align-items:center;gap:4px;padding:4px 10px 10px;border-bottom:1px solid #E6DCDD;color:#3A1E3C">
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><fv-icon name="chevron-left" size="22"></fv-icon></span>
+            <div style="display:flex;flex-direction:column;flex:1"><span style="font:500 14px Roboto,Arial,sans-serif">Borrador</span><span style="font-size:12px;color:#5C4A5C">Guardado hace 1 min</span></div>
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><fv-icon name="file-text" size="20"></fv-icon></span>
+            <button style="background:#3A1E3C;color:#F5F0EC;font:500 14px Roboto,Arial,sans-serif;padding:10px 14px;border-radius:9px;border:none">Publicar</button>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;padding:20px 18px;display:flex;flex-direction:column;gap:20px;background:#FFFDFB">
+            <h1 style="margin:0;font:700 28px/1.15 Lora,Georgia,serif;color:#3A1E3C">El pastor que deja las noventa y nueve</h1>
+            <blockquote style="margin:0;border-left:3px solid #B8892E;padding-left:14px;display:flex;flex-direction:column;gap:4px"><span style="font:italic 500 16px/1.5 Lora,Georgia,serif;color:#3A1E3C">«…y va tras la que se perdió, hasta encontrarla?»</span><span style="font-size:12px">Lucas 15:4 · RVR1960</span></blockquote>
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Introducción</span><p style="margin:0;font-size:15px;line-height:1.6">Jesús cuenta esta parábola rodeado de dos públicos: los pecadores que se acercan y los religiosos que murmuran.</p></div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Puntos</span>
+              <sc-for list="{{ points }}" as="p" hint-placeholder-count="3">
+                <div style="display:flex;gap:8px;align-items:flex-start;padding:12px 12px 12px 4px;border:1px solid #E6DCDD;border-radius:14px;background:#FBF8F5">
+                  <span style="padding:2px;color:#5C4A5C"><fv-icon name="grip-vertical" size="16"></fv-icon></span>
+                  <div style="flex:1;display:flex;flex-direction:column;gap:4px"><div style="display:flex;gap:8px"><span style="font:600 16px Lora,serif;color:#B8892E">{{ p.num }}.</span><span style="font:600 16px/1.35 Lora,serif;color:#3A1E3C">{{ p.title }}</span></div><span style="font-size:12px;padding-left:26px">{{ p.subCount }} subpuntos · {{ p.verse }}</span></div>
+                  <span style="color:#5C4A5C"><fv-icon name="chevron-down" size="16"></fv-icon></span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex-shrink:0;height:78px;border-top:1px solid #E6DCDD;background:#F5F0EC;display:grid;grid-template-columns:repeat(4,1fr);padding-top:10px;color:#3A1E3C">
+            <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px"><fv-icon name="book-open" size="21"></fv-icon>Versículo</span>
+            <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px"><fv-icon name="list-plus" size="21"></fv-icon>Punto</span>
+            <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px"><fv-icon name="lightbulb" size="21"></fv-icon>Ilustración</span>
+            <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px"><fv-icon name="type" size="21"></fv-icon>Formato</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1b · BARRA SUPERIOR ============ -->
+    <div id="1b" style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="background:#3A1E3C;color:#F5F0EC;font:600 15px Lora,serif;padding:6px 12px;border-radius:9px">1b</span>
+        <span style="font:600 23px Lora,serif;color:#3A1E3C">Barra superior</span>
+      </div>
+
+      <span style="font:500 12px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#5C4A5C">Inicio · Escritorio</span>
+      <div data-screen-label="1b Inicio escritorio" style="width:1280px;height:900px;display:flex;flex-direction:column;background:#F5F0EC;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(58,30,60,.12),0 8px 24px rgba(58,30,60,.08)">
+        <header style="height:72px;flex-shrink:0;border-bottom:1px solid #D6C8CC;display:flex;align-items:center;gap:36px;padding:0 40px">
+          <div style="display:flex;align-items:center;gap:14px">
+            <img src="assets/menora-color.svg" alt="" style="height:30px">
+            <span style="width:1.5px;height:28px;background:#D6C8CC"></span>
+            <span style="font:700 19px Lora,serif;color:#3A1E3C;white-space:nowrap">Fiel <i style="font-weight:500;color:#B8892E">y</i> Verdadero</span>
+          </div>
+          <nav style="display:flex;gap:26px;font-size:14px;align-self:stretch">
+            <span style="display:flex;align-items:center;color:#3A1E3C;font-weight:500;box-shadow:inset 0 -2px 0 #B8892E">Inicio</span>
+            <span style="display:flex;align-items:center">Sermones</span>
+            <span style="display:flex;align-items:center">Estudios</span>
+            <span style="display:flex;align-items:center">Citas</span>
+            <span style="display:flex;align-items:center">Comunidad</span>
+          </nav>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+            <div style="width:240px;display:flex;align-items:center;gap:8px;background:#FBF8F5;box-shadow:inset 0 0 0 1.5px #D6C8CC;border-radius:9px;padding:9px 12px;font-size:14px"><fv-icon name="search" size="15"></fv-icon>Buscar…</div>
+            <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#3A1E3C"><fv-icon name="bell" size="19"></fv-icon></span>
+            <button style="display:flex;align-items:center;gap:8px;background:#3A1E3C;color:#F5F0EC;font:500 14px Roboto,Arial,sans-serif;padding:10px 16px;border-radius:9px;border:none;cursor:pointer;white-space:nowrap" style-hover="background:#4E2B51"><fv-icon name="pen-line" size="16"></fv-icon>Crear sermón</button>
+            <span style="width:36px;height:36px;border-radius:50%;background:#3A1E3C;color:#D9AE52;font:600 13px Lora,serif;display:flex;align-items:center;justify-content:center">DR</span>
+          </div>
+        </header>
+        <div style="flex:1;min-height:0;overflow:hidden;display:flex;gap:48px;padding:36px 40px;justify-content:center">
+          <aside style="width:200px;flex-shrink:0;display:flex;flex-direction:column;gap:28px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E;padding-bottom:8px">Tipo</span>
+              <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+                <button onClick="{{ f.onClick }}" style="display:flex;border:none;padding:0;background:transparent;cursor:pointer;text-align:left">
+                  <sc-if value="{{ f.active }}"><span style="flex:1;display:flex;justify-content:space-between;background:#E6DCDD;color:#3A1E3C;font:500 14px Roboto,Arial,sans-serif;padding:9px 12px;border-radius:9px"><span>{{ f.label }}</span><span style="font-size:12px">{{ f.count }}</span></span></sc-if>
+                  <sc-if value="{{ f.inactive }}"><span style="flex:1;display:flex;justify-content:space-between;color:#5C4A5C;font:400 14px Roboto,Arial,sans-serif;padding:9px 12px;border-radius:9px"><span>{{ f.label }}</span><span style="font-size:12px">{{ f.count }}</span></span></sc-if>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #E6DCDD;padding-top:22px">
+              <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Tema</span>
+              <span style="display:flex;align-items:center;gap:10px;font-size:14px;color:#3A1E3C"><span style="width:16px;height:16px;border-radius:4px;background:#3A1E3C;color:#F5F0EC;display:flex;align-items:center;justify-content:center"><fv-icon name="check" size="12" stroke="2.5"></fv-icon></span>Gracia</span>
+              <span style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="width:16px;height:16px;border-radius:4px;box-shadow:inset 0 0 0 1.5px #D6C8CC"></span>Oración</span>
+              <span style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="width:16px;height:16px;border-radius:4px;box-shadow:inset 0 0 0 1.5px #D6C8CC"></span>Familia</span>
+              <span style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="width:16px;height:16px;border-radius:4px;box-shadow:inset 0 0 0 1.5px #D6C8CC"></span>Esperanza</span>
+              <span style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="width:16px;height:16px;border-radius:4px;box-shadow:inset 0 0 0 1.5px #D6C8CC"></span>Discipulado</span>
+              <span style="font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C">Ver todos los temas</span>
+            </div>
+          </aside>
+          <div style="flex:1;min-width:0;max-width:640px;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:2px solid #3A1E3C;padding-bottom:14px">
+              <div style="display:flex;flex-direction:column;gap:6px"><span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Domingo 1 de noviembre</span><h1 style="margin:0;font:700 34px/1.1 Lora,Georgia,serif;color:#3A1E3C">Publicaciones recientes</h1></div>
+              <span style="display:flex;gap:18px;font-size:14px"><span style="color:#3A1E3C;font-weight:500">Para ti</span><span>Siguiendo</span></span>
+            </div>
+            <sc-for list="{{ posts }}" as="p" hint-placeholder-count="4">
+              <article style="background:#FBF8F5;border:1px solid #E6DCDD;border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                  <div style="display:flex;align-items:center;gap:10px"><span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">{{ p.type }}</span><span style="width:3px;height:3px;border-radius:50%;background:#D6C8CC"></span><span style="font-size:12px">{{ p.topic }}</span></div>
+                  <span style="font-size:12px">{{ p.time }}</span>
+                </div>
+                <sc-if value="{{ p.isText }}">
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <h3 style="margin:0;font:600 21px/1.3 Lora,Georgia,serif;color:#3A1E3C">{{ p.title }}</h3>
+                    <p style="margin:0;font-size:15px;line-height:1.6;text-wrap:pretty">{{ p.excerpt }}</p>
+                    <span style="align-self:flex-start;display:flex;align-items:center;gap:6px;font:500 12px Roboto,Arial,sans-serif;color:#3A1E3C;background:#F1E9E3;padding:5px 10px;border-radius:8px"><fv-icon name="book-open" size="13"></fv-icon>{{ p.ref }}</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ p.isQuote }}">
+                  <blockquote style="margin:4px 0;border-left:3px solid #B8892E;padding-left:16px;display:flex;flex-direction:column;gap:8px">
+                    <span style="font:italic 500 21px/1.45 Lora,Georgia,serif;color:#3A1E3C;text-wrap:pretty">{{ p.quote }}</span>
+                    <span style="font-size:13px">— {{ p.source }}</span>
+                  </blockquote>
+                </sc-if>
+                <div style="display:flex;align-items:center;gap:10px;border-top:1px solid #E6DCDD;padding-top:12px">
+                  <span style="width:28px;height:28px;border-radius:50%;background:#3A1E3C;color:#D9AE52;font:600 11px Lora,serif;display:flex;align-items:center;justify-content:center">{{ p.initials }}</span>
+                  <span style="font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C">{{ p.author }}</span>
+                  <span style="font-size:12px">{{ p.meta }}</span>
+                  <div style="margin-left:auto;display:flex;align-items:center;gap:16px;font-size:13px">
+                    <span style="display:flex;align-items:center;gap:5px"><fv-icon name="heart" size="16"></fv-icon>{{ p.likes }}</span>
+                    <span style="display:flex;align-items:center;gap:5px"><fv-icon name="message-circle" size="16"></fv-icon>{{ p.comments }}</span>
+                    <fv-icon name="bookmark" size="16"></fv-icon>
+                    <fv-icon name="share-2" size="16"></fv-icon>
+                  </div>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+          <sc-if value="{{ showRail }}" hint-placeholder-val="{{ true }}">
+            <div style="width:272px;flex-shrink:0;display:flex;flex-direction:column;gap:24px">
+              <div style="background:#3A1E3C;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px">
+                <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#D9AE52">Versículo del día</span>
+                <span style="font:italic 500 18px/1.5 Lora,Georgia,serif;color:#F5F0EC">«Yo soy el buen pastor; el buen pastor su vida da por las ovejas.»</span>
+                <span style="font-size:13px;color:#F5F0EC">Juan 10:11 · RVR1960</span>
+              </div>
+              <div style="background:#FBF8F5;border:1px solid #E6DCDD;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px">
+                <h3 style="margin:0;font:600 18px/1.3 Lora,serif;color:#3A1E3C">Tus borradores</h3>
+                <span style="display:flex;justify-content:space-between;font-size:14px;color:#3A1E3C;padding:6px 0;border-bottom:1px solid #E6DCDD"><span>El pastor que deja las 99</span><span style="font-size:12px;color:#5C4A5C">hoy</span></span>
+                <span style="display:flex;justify-content:space-between;font-size:14px;color:#3A1E3C;padding:6px 0;border-bottom:1px solid #E6DCDD"><span>Salmo 23, verso a verso</span><span style="font-size:12px;color:#5C4A5C">mar</span></span>
+                <span style="display:flex;justify-content:space-between;font-size:14px;color:#3A1E3C;padding:6px 0"><span>Fe en tiempo de espera</span><span style="font-size:12px;color:#5C4A5C">12 oct</span></span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <h3 style="margin:0 0 8px;font:600 18px/1.3 Lora,serif;color:#3A1E3C">Autores para seguir</h3>
+                <sc-for list="{{ authors }}" as="a" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:10px;padding:8px 0">
+                    <span style="width:34px;height:34px;border-radius:50%;background:#3A1E3C;color:#D9AE52;font:600 12px Lora,serif;display:flex;align-items:center;justify-content:center">{{ a.initials }}</span>
+                    <div style="flex:1;display:flex;flex-direction:column"><span style="font:500 14px Roboto,Arial,sans-serif;color:#3A1E3C">{{ a.name }}</span><span style="font-size:12px">{{ a.role }}</span></div>
+                    <span style="font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C;padding:6px 12px;border-radius:9px;box-shadow:inset 0 0 0 1.5px #D6C8CC">Seguir</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+
+      <span style="font:500 12px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#5C4A5C;margin-top:24px">Editor de sermón · Escritorio</span>
+      <div data-screen-label="1b Editor escritorio" style="width:1280px;height:980px;display:flex;flex-direction:column;background:#F5F0EC;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(58,30,60,.12),0 8px 24px rgba(58,30,60,.08)">
+        <header style="height:64px;flex-shrink:0;border-bottom:1px solid #D6C8CC;display:flex;align-items:center;gap:16px;padding:0 24px">
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#3A1E3C"><fv-icon name="arrow-left" size="19"></fv-icon></span>
+          <img src="assets/menora-simplificada.svg" alt="" style="height:24px">
+          <span style="width:1.5px;height:24px;background:#D6C8CC"></span>
+          <div style="display:flex;flex-direction:column;min-width:0"><span style="font:600 16px Lora,serif;color:#3A1E3C;white-space:nowrap">El pastor que deja las noventa y nueve</span><span style="display:flex;align-items:center;gap:5px;font-size:12px"><fv-icon name="check-check" size="13"></fv-icon>Borrador · guardado hace 1 min</span></div>
+          <div style="margin:0 auto;display:flex;align-items:center;gap:4px;color:#3A1E3C">
+            <span style="width:34px;height:34px;display:flex;align-items:center;justify-content:center"><fv-icon name="bold" size="16"></fv-icon></span>
+            <span style="width:34px;height:34px;display:flex;align-items:center;justify-content:center"><fv-icon name="italic" size="16"></fv-icon></span>
+            <span style="width:34px;height:34px;display:flex;align-items:center;justify-content:center"><fv-icon name="list" size="16"></fv-icon></span>
+            <span style="width:34px;height:34px;display:flex;align-items:center;justify-content:center"><fv-icon name="text-quote" size="16"></fv-icon></span>
+            <span style="width:1px;height:20px;background:#D6C8CC;margin:0 6px"></span>
+            <span style="display:flex;align-items:center;gap:6px;font:500 13px Roboto,Arial,sans-serif;padding:8px 12px;border-radius:8px;background:#F1E9E3"><fv-icon name="book-open" size="15"></fv-icon>Versículo</span>
+            <span style="display:flex;align-items:center;gap:6px;font:500 13px Roboto,Arial,sans-serif;padding:8px 12px"><fv-icon name="lightbulb" size="15"></fv-icon>Ilustración</span>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button style="background:transparent;color:#3A1E3C;font:500 14px Roboto,Arial,sans-serif;padding:10px 16px;border-radius:9px;border:none;box-shadow:inset 0 0 0 1.5px #D6C8CC;cursor:pointer;white-space:nowrap">Guardar borrador</button>
+            <button style="background:#3A1E3C;color:#F5F0EC;font:500 14px Roboto,Arial,sans-serif;padding:10px 16px;border-radius:9px;border:none;cursor:pointer">Publicar</button>
+          </div>
+        </header>
+        <div style="flex:1;min-height:0;display:flex">
+          <aside style="width:220px;flex-shrink:0;border-right:1px solid #E6DCDD;padding:24px 18px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+            <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E;padding-bottom:6px">Estructura</span>
+            <span style="padding:6px 10px">Texto base</span>
+            <span style="padding:6px 10px">Introducción</span>
+            <sc-for list="{{ points }}" as="p" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:6px;padding:6px 4px 6px 10px;border-radius:9px;background:#FBF8F5;border:1px solid #E6DCDD;color:#3A1E3C">
+                <span style="font:600 13px Lora,serif;color:#B8892E;min-width:18px">{{ p.num }}</span>
+                <span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px">{{ p.title }}</span>
+                <button onClick="{{ p.onUp }}" style="width:22px;height:22px;border:none;background:transparent;color:#5C4A5C;cursor:pointer;border-radius:5px;display:flex;align-items:center;justify-content:center;padding:0" style-hover="background:#E6DCDD"><fv-icon name="chevron-up" size="14"></fv-icon></button>
+                <button onClick="{{ p.onDown }}" style="width:22px;height:22px;border:none;background:transparent;color:#5C4A5C;cursor:pointer;border-radius:5px;display:flex;align-items:center;justify-content:center;padding:0" style-hover="background:#E6DCDD"><fv-icon name="chevron-down" size="14"></fv-icon></button>
+              </div>
+            </sc-for>
+            <span style="padding:6px 10px">Ilustración</span>
+            <span style="padding:6px 10px">Aplicación</span>
+            <span style="padding:6px 10px">Conclusión</span>
+            <span style="display:flex;align-items:center;gap:6px;padding:8px 10px;font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C"><fv-icon name="plus" size="14"></fv-icon>Añadir sección</span>
+          </aside>
+          <div style="flex:1;min-width:0;overflow:hidden;padding:32px 40px;display:flex;justify-content:center;background:#FFFDFB">
+            <div style="width:100%;max-width:600px;display:flex;flex-direction:column;gap:26px">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Texto base</span>
+                <blockquote style="margin:0;border-left:3px solid #B8892E;padding-left:16px;display:flex;flex-direction:column;gap:6px">
+                  <span style="font:italic 500 18px/1.55 Lora,Georgia,serif;color:#3A1E3C">«¿Qué hombre de vosotros, teniendo cien ovejas, si pierde una de ellas, no deja las noventa y nueve en el desierto, y va tras la que se perdió, hasta encontrarla?»</span>
+                  <span style="font-size:13px">Lucas 15:4 · RVR1960</span>
+                </blockquote>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Introducción</span>
+                <p style="margin:0;font-size:16px;line-height:1.6;text-wrap:pretty">Jesús cuenta esta parábola rodeado de dos públicos: los pecadores que se acercan a oírle y los religiosos que murmuran. A unos y a otros les muestra cómo es el corazón de Dios cuando algo suyo se pierde.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:18px">
+                <sc-for list="{{ points }}" as="p" hint-placeholder-count="3">
+                  <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:18px;border-bottom:1px solid #E6DCDD">
+                    <div style="display:flex;align-items:baseline;gap:12px">
+                      <span style="font:600 22px Lora,serif;color:#B8892E;min-width:28px">{{ p.num }}.</span>
+                      <h2 style="margin:0;font:600 23px/1.2 Lora,Georgia,serif;color:#3A1E3C;flex:1">{{ p.title }}</h2>
+                    </div>
+                    <span style="margin-left:40px;align-self:flex-start;display:flex;align-items:center;gap:5px;font:500 12px Roboto,Arial,sans-serif;color:#3A1E3C;background:#F1E9E3;padding:4px 9px;border-radius:8px"><fv-icon name="book-open" size="12"></fv-icon>{{ p.verse }}</span>
+                    <sc-for list="{{ p.sub }}" as="s" hint-placeholder-count="2">
+                      <div style="display:flex;gap:10px;padding-left:40px;font-size:15px;line-height:1.6"><span style="font:500 15px Lora,serif;color:#B8892E">{{ s.letter }}.</span><span>{{ s.text }}</span></div>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Ilustración</span>
+                <p style="margin:0;font-size:16px;line-height:1.6">Un pastor de Galilea contaba sus ovejas cada tarde al cerrar el redil. Una noche faltaba una; no esperó al amanecer.</p>
+              </div>
+            </div>
+          </div>
+          <aside style="width:340px;flex-shrink:0;border-left:1px solid #E6DCDD;padding:24px;display:flex;flex-direction:column;gap:14px;background:#EFE8E3">
+            <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:500 11px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Vista previa PDF</span><span style="display:flex;align-items:center;gap:6px;font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C"><fv-icon name="download" size="14"></fv-icon>Exportar</span></div>
+            <div style="width:292px;height:378px;background:#FFFDFB;box-shadow:0 1px 2px rgba(58,30,60,.12),0 8px 24px rgba(58,30,60,.08);padding:26px 24px 14px;box-sizing:border-box;display:flex;flex-direction:column;gap:9px;overflow:hidden">
+              <span style="font:500 6px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">Sermón</span>
+              <span style="font:700 15px/1.15 Lora,serif;color:#3A1E3C">El pastor que deja las noventa y nueve</span>
+              <span style="font:italic 500 8px/1.5 Lora,serif;color:#3A1E3C;border-left:2px solid #B8892E;padding-left:7px">«¿Qué hombre de vosotros, teniendo cien ovejas, si pierde una de ellas…?» — Lucas 15:4</span>
+              <span style="font:600 9px Lora,serif;color:#3A1E3C">Introducción</span>
+              <span style="font-size:7px;line-height:1.55">Jesús cuenta esta parábola rodeado de dos públicos: los pecadores que se acercan a oírle y los religiosos que murmuran. A unos y a otros les muestra cómo es el corazón de Dios.</span>
+              <sc-for list="{{ points }}" as="p" hint-placeholder-count="3">
+                <div style="display:flex;flex-direction:column;gap:2px"><span style="font:600 9px Lora,serif;color:#3A1E3C">{{ p.num }}. {{ p.title }}</span><span style="font-size:7px;line-height:1.5">{{ p.subLine }}</span></div>
+              </sc-for>
+              <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #E6DCDD;padding-top:6px;font-size:6px">
+                <span>El pastor que deja las 99</span>
+                <span style="font:600 6px Lora,serif;letter-spacing:.14em;color:#3A1E3C">FIEL <span style="color:#B8892E">◆</span> VERDADERO</span>
+                <span>1</span>
+              </div>
+            </div>
+            <span style="font-size:12px">Página 1 de 3 · Carta · 12 pt</span>
+          </aside>
+        </div>
+      </div>
+
+      <span style="font:500 12px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#5C4A5C;margin-top:24px">Móvil · Inicio y Editor</span>
+      <div style="display:flex;gap:48px">
+        <!-- Mobile Inicio B -->
+        <div data-screen-label="1b Inicio móvil" style="width:390px;height:844px;box-sizing:border-box;border-radius:44px;border:10px solid #2A162C;background:#F5F0EC;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 8px 24px rgba(58,30,60,.18)">
+          <div style="height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font:500 14px Roboto,Arial,sans-serif;color:#3A1E3C"><span>9:41</span><span style="display:flex;gap:6px"><fv-icon name="signal" size="15"></fv-icon><fv-icon name="wifi" size="15"></fv-icon><fv-icon name="battery-full" size="17"></fv-icon></span></div>
+          <div style="display:flex;align-items:center;gap:6px;padding:4px 10px 8px;color:#3A1E3C;border-bottom:1px solid #D6C8CC">
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><fv-icon name="menu" size="22"></fv-icon></span>
+            <img src="assets/menora-color.svg" alt="" style="height:22px">
+            <span style="font:700 16px Lora,serif">Fiel <i style="font-weight:500;color:#B8892E">y</i> Verdadero</span>
+            <span style="margin-left:auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><fv-icon name="search" size="20"></fv-icon></span>
+          </div>
+          <div style="display:flex;gap:22px;padding:0 18px;font-size:14px;border-bottom:1px solid #E6DCDD">
+            <span style="padding:14px 0;color:#3A1E3C;font-weight:500;box-shadow:inset 0 -2px 0 #B8892E">Para ti</span>
+            <span style="padding:14px 0">Siguiendo</span>
+            <span style="padding:14px 0">Temas</span>
+          </div>
+          <div style="display:flex;gap:6px;padding:12px 18px;overflow:hidden">
+            <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+              <button onClick="{{ f.onClick }}" style="display:flex;flex-shrink:0;border:none;padding:0;background:transparent;cursor:pointer">
+                <sc-if value="{{ f.active }}"><span style="background:#3A1E3C;color:#F5F0EC;font:500 13px Roboto,Arial,sans-serif;padding:9px 14px;border-radius:9px;white-space:nowrap">{{ f.label }}</span></sc-if>
+                <sc-if value="{{ f.inactive }}"><span style="color:#3A1E3C;font:500 13px Roboto,Arial,sans-serif;padding:9px 14px;border-radius:9px;box-shadow:inset 0 0 0 1.5px #D6C8CC;white-space:nowrap">{{ f.label }}</span></sc-if>
+              </button>
+            </sc-for>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column">
+            <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+              <article style="padding:18px;border-bottom:1px solid #E6DCDD;display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;gap:8px"><span style="width:24px;height:24px;border-radius:50%;background:#3A1E3C;color:#D9AE52;font:600 10px Lora,serif;display:flex;align-items:center;justify-content:center">{{ p.initials }}</span><span style="font:500 13px Roboto,Arial,sans-serif;color:#3A1E3C">{{ p.author }}</span><span style="font-size:12px">· {{ p.time }}</span><span style="margin-left:auto;font:500 10px Roboto,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8892E">{{ p.type }}</span></div>
+                <sc-if value="{{ p.isText }}"><div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font:600 18px/1.3 Lora,Georgia,serif;color:#3A1E3C">{{ p.title }}</h3><p style="margin:0;font-size:14px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ p.excerpt }}</p></div></sc-if>
+                <sc-if value="{{ p.isQuote }}"><blockquote style="margin:0;border-left:3px solid #B8892E;padding-left:14px;font:italic 500 17px/1.45 Lora,Georgia,serif;color:#3A1E3C">{{ p.quote }}</blockquote></sc-if>
+                <div style="display:flex;gap:18px;font-size:12px;color:#5C4A5C"><span style="display:flex;align-items:center;gap:5px"><fv-icon name="heart" size="16"></fv-icon>{{ p.likes }}</span><span style="display:flex;align-items:center;gap:5px"><fv-icon name="message-circle" size="16"></fv-icon>{{ p.comments }}</span><span style="margin-left:auto;display:flex;gap:16px"><fv-icon name="bookmark" size="16"></fv-icon><fv-icon name="share-2" size="16"></fv-icon></span></div>
+              </article>
+            </sc-for>
+          </div>
+          <button style="position:absolute;right:18px;bottom:30px;display:flex;align-items:center;gap:8px;background:#3A1E3C;color:#F5F0EC;font:500 15px Roboto,Arial,sans-serif;padding:15px 20px;border-radius:10px;border:none;box-shadow:0 1px 2px rgba(58,30,60,.2),0 8px 24px rgba(58,30,60,.25)"><fv-icon name="pen-line" size="18"></fv-icon>Crear sermón</button>
+        </div>
+        <!-- Mobile Editor B -->
+        <div data-screen-label="1b Editor móvil" style="width:390px;height:844px;box-sizing:border-box;border-radius:44px;border:10px solid #2A162C;background:#FFFDFB;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(58,30,60,.18)">
+          <div style="height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font:500 14px Roboto,Arial,sans-serif;color:#3A1E3C;background:#F5F0EC"><span>9:41</span><span style="display:flex;gap:6px"><fv-icon name="signal" size="15"></fv-icon><fv-icon name="wifi" size="15"></fv-icon><fv-icon name="battery-full" size="17"></fv-icon></span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:4px 10px 10px;background:#F5F0EC;color:#3A1E3C">
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><fv-icon name="x" size="22"></fv-icon></span>
+            <div style="flex:1;display:flex;background:#E6DCDD;border-radius:10px;padding:3px">
+              <span style="flex:1;text-align:center;font:500 13px Roboto,Arial,sans-serif;padding:8px 0;background:#FFFDFB;border-radius:8px">Escribir</span>
+              <span style="flex:1;text-align:center;font:500 13px Roboto,Arial,sans-serif;padding:8px 0;color:#5C4A5C">Vista PDF</span>
+            </div>
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><fv-icon name="ellipsis" size="20"></fv-icon></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;padding:8px 18px;font-size:12px;border-top:1px solid #E6DCDD;border-bottom:1px solid #E6DCDD;background:#F5F0EC"><fv-icon name="check-check" size="14"></fv-icon>Borrador guardado hace 1 min</div>
+          <div style="flex:1;min-height:0;overflow:hidden;padding:20px 18px;display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ points }}" as="p" hint-placeholder-count="2">
+                <div style="display:flex;flex-direction:column;gap:6px;padding-bottom:14px;border-bottom:1px solid #E6DCDD">
+                  <div style="display:flex;gap:10px;align-items:baseline"><span style="font:600 18px Lora,serif;color:#B8892E">{{ p.num }}.</span><span style="font:600 18px/1.3 Lora,serif;color:#3A1E3C;flex:1">{{ p.title }}</span><span style="color:#5C4A5C"><fv-icon name="grip-vertical" size="16"></fv-icon></span></div>
+                  <span style="margin-left:28px;align-self:flex-start;display:flex;align-items:center;gap:5px;font:500 12px Roboto,Arial,sans-serif;color:#3A1E3C;background:#F1E9E3;padding:4px 9px;border-radius:8px"><fv-icon name="book-open" size="12"></fv-icon>{{ p.verse }}</span>
+                  <sc-for list="{{ p.sub }}" as="s" hint-placeholder-count="2">
+                    <div style="display:flex;gap:8px;padding-left:28px;font-size:14px;line-height:1.55"><span style="font:500 14px Lora,serif;color:#B8892E">{{ s.letter }}.</span><span>{{ s.text }}</span></div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex-shrink:0;border-top:1px solid #E6DCDD;background:#F5F0EC;padding:10px 12px 26px;display:flex;align-items:center;gap:6px;color:#3A1E3C">
+            <span style="display:flex;align-items:center;gap:6px;font:500 13px Roboto,Arial,sans-serif;padding:11px 12px;border-radius:9px;background:#E6DCDD"><fv-icon name="book-open" size="16"></fv-icon>Versículo</span>
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><fv-icon name="list-plus" size="19"></fv-icon></span>
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><fv-icon name="lightbulb" size="19"></fv-icon></span>
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><fv-icon name="bold" size="19"></fv-icon></span>
+            <button style="margin-left:auto;background:#3A1E3C;color:#F5F0EC;font:500 14px Roboto,Arial,sans-serif;padding:11px 16px;border-radius:9px;border:none">Publicar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showRail&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Inicio&quot;},&quot;showHebrew&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Marca&quot;}}">
+class Component extends DCLogic {
+  state = {
+    filter: 'Todo',
+    points: [
+      { id: 1, title: 'Dios busca lo que se ha perdido', verse: 'Lucas 15:4', sub: ['El valor de una sola oveja', 'La iniciativa siempre es del pastor'] },
+      { id: 2, title: 'La búsqueda no se detiene hasta encontrar', verse: 'Lucas 15:5', sub: ['«Hasta encontrarla»: la perseverancia de Dios', 'Sobre sus hombros: cargar al débil'] },
+      { id: 3, title: 'El cielo celebra el arrepentimiento', verse: 'Lucas 15:7', sub: ['Un gozo que se comparte', 'Nuestra respuesta: buscar con Él'] }
+    ]
+  };
+  move(i, d) {
+    this.setState(s => {
+      const p = [...s.points], j = i + d;
+      if (j < 0 || j >= p.length) return null;
+      [p[i], p[j]] = [p[j], p[i]];
+      return { points: p };
+    });
+  }
+  renderVals() {
+    const R = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    const L = 'abcdefgh';
+    const all = [
+      { type: 'Sermón', topic: 'Gracia', time: 'hace 2 h', title: 'El hijo que volvió a casa', excerpt: 'Antes de que el hijo terminara su discurso ensayado, el padre ya corría hacia él. La gracia no espera a que lleguemos limpios.', ref: 'Lucas 15:11–24', author: 'Elena Martín', initials: 'EM', meta: '· 18 min de lectura', likes: 124, comments: 18 },
+      { type: 'Cita', topic: 'Oración', time: 'hace 3 h', quote: 'La oración no cambia a Dios, pero cambia a quien ora.', source: 'Søren Kierkegaard', author: 'Samuel Ortega', initials: 'SO', meta: '', likes: 86, comments: 4 },
+      { type: 'Estudio', topic: 'Esperanza', time: 'hace 5 h', title: 'Romanos 8 en cinco sesiones', excerpt: 'Un estudio para grupos pequeños: de «ninguna condenación» a «nada nos podrá separar». Incluye preguntas de discusión.', ref: 'Romanos 8:1–39', author: 'Ana Belén Cruz', initials: 'AC', meta: '· 5 sesiones', likes: 211, comments: 32 },
+      { type: 'Frase', topic: 'Fe', time: 'ayer', quote: 'Fiel es el que prometió; por eso podemos esperar sin prisa.', source: 'Daniel Ríos', author: 'Daniel Ríos', initials: 'DR', meta: '', likes: 57, comments: 6 },
+      { type: 'Reflexión', topic: 'Familia', time: 'ayer', title: 'Lo que aprendí lavando platos con mi padre', excerpt: 'Servir no siempre se ve como un púlpito. A veces es agua tibia, silencio y una conversación que llega tarde.', ref: 'Juan 13:14', author: 'Marcos Peña', initials: 'MP', meta: '· 6 min de lectura', likes: 98, comments: 11 }
+    ];
+    const map = { Sermones: 'Sermón', Estudios: 'Estudio', Citas: 'Cita', Frases: 'Frase', Reflexiones: 'Reflexión' };
+    const counts = { Todo: 248, Sermones: 96, Estudios: 41, Citas: 58, Frases: 33, Reflexiones: 20 };
+    const f = this.state.filter;
+    const posts = all.filter(p => f === 'Todo' || p.type === map[f]).map(p => ({ ...p, isQuote: !!p.quote, isText: !p.quote }));
+    const filters = Object.keys(counts).map(label => ({
+      label, count: counts[label], active: f === label, inactive: f !== label,
+      onClick: () => this.setState({ filter: label })
+    }));
+    const points = this.state.points.map((p, i) => ({
+      ...p, num: R[i],
+      sub: p.sub.map((t, k) => ({ letter: L[k], text: t })),
+      subCount: p.sub.length,
+      subLine: p.sub.join(' · '),
+      onUp: () => this.move(i, -1), onDown: () => this.move(i, 1)
+    }));
+    return {
+      posts, filters, points,
+      authors: [
+        { name: 'Ana Belén Cruz', role: 'Maestra · Estudios', initials: 'AC' },
+        { name: 'Samuel Ortega', role: 'Pastor · Sevilla', initials: 'SO' },
+        { name: 'Lucía Herrera', role: 'Reflexiones diarias', initials: 'LH' }
+      ],
+      showRail: this.props.showRail ?? true,
+      showHebrew: this.props.showHebrew ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

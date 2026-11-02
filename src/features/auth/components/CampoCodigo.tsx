@@ -1,9 +1,8 @@
-import { Campo } from "@/components/Formulario";
-
 export function CampoCodigo() {
   return (
-    <Campo
+    <input
       name="codigo"
+      aria-label="Código"
       inputMode="numeric"
       autoComplete="one-time-code"
       pattern="\d{6,8}"
@@ -11,7 +10,7 @@ export function CampoCodigo() {
       placeholder="00000000"
       required
       autoFocus
-      className="text-center text-xl tracking-[0.4em]"
+      className="h-[60px] w-full rounded-[10px] border border-border bg-surface text-center font-display text-[26px] font-semibold tracking-[0.35em] text-foreground outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-border hover:border-border-fuerte focus:border-accent focus:shadow-[0_0_0_3px_var(--anillo)]"
     />
   );
 }

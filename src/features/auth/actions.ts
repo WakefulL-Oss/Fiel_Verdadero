@@ -14,6 +14,7 @@ import {
 export type EstadoAuth = {
   paso: "datos" | "codigo" | "password";
   correo?: string;
+  nombre?: string;
   error?: string;
   aviso?: string;
 };
@@ -44,7 +45,9 @@ export async function iniciarSesion(
     correo: formData.get("correo"),
     password: formData.get("password"),
   });
-  if (!datos.success) return { paso: "datos", error: datos.error.issues[0].message };
+  if (!datos.success) {
+    return { paso: "datos", correo: correoDe(formData), error: datos.error.issues[0].message };
+  }
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({
@@ -58,6 +61,7 @@ export async function iniciarSesion(
     }
     return {
       paso: "datos",
+      correo: datos.data.correo,
       error: mensaje(error.code, "Correo o contraseña incorrectos"),
     };
   }
@@ -68,21 +72,28 @@ export async function registrar(
   _previo: EstadoAuth,
   formData: FormData,
 ): Promise<EstadoAuth> {
+  const nombre = String(formData.get("nombre") ?? "");
   const datos = registroSchema.safeParse({
+    nombre,
     correo: formData.get("correo"),
     password: formData.get("password"),
+    acepto: formData.get("acepto"),
   });
-  if (!datos.success) return { paso: "datos", error: datos.error.issues[0].message };
+  if (!datos.success) {
+    return { paso: "datos", nombre, correo: correoDe(formData), error: datos.error.issues[0].message };
+  }
 
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signUp({
     email: datos.data.correo,
     password: datos.data.password,
-    options: { captchaToken: captchaDe(formData) },
+    options: { captchaToken: captchaDe(formData), data: { full_name: datos.data.nombre } },
   });
   if (error) {
     return {
       paso: "datos",
+      nombre,
+      correo: datos.data.correo,
       error: mensaje(
         error.code,
         error.code === "weak_password" ? "La contraseña es muy débil" : GENERICO,

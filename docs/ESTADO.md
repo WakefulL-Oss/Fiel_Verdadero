@@ -23,8 +23,9 @@
 - [x] CAPTCHA (Turnstile) integrado en registro, login, recuperación y reenvío; falta activarlo en Cloudflare y Supabase.
 - [x] Subagentes `planer`, `ena` y `revi` en `.claude/agents/`.
 - [x] Docs de seguridad (`SEGURIDAD.md`) y respaldos (`RESPALDOS.md`); respaldos excluidos de git.
-- [x] Workflow keep-alive y Dependabot en .github/.
-- [x] Marca aplicada: paleta púrpura real (claro y oscuro), Lora, Menora/Logo en src/components/marca/, encabezado y pie globales, favicon, pple-icon, manifest. Fuente de la marca en docs/marca/.
+- [x] Workflow keep-alive y Dependabot en `.github/`.
+- [x] Marca aplicada: paleta púrpura real (claro y oscuro), Lora, `Menora`/`Logo` en `src/components/marca/`, favicon, `apple-icon`, `manifest`. Fuente de la marca en `docs/marca/`.
+- [x] Vistas según el mockup v2 (`docs/diseno/`): `/login` centrado, `/registro` y `/recuperar` divididos con versículo, páginas legales con índice y resumen, `/eliminar-datos` con tarjetas. El registro pide nombre (va a `perfiles.nombre_completo`) y aceptar los términos.
 
 ## Pendiente (en orden)
 
@@ -42,4 +43,4 @@
 11. [ ] Subida de portadas (WebP, máx. 300 KB).
 12. [ ] Reportes y panel de moderación.
 13. [ ] Primer respaldo manual de producción (`RESPALDOS.md`).
-14. [ ] Diseño de vistas a partir del proyecto de Claude Design (pendiente de acceso: `/design-login` o exportar los archivos).
+14. [ ] Shell de la app (barra lateral «2a» del mockup: Crear sermón, Inicio, Sermones, Estudios, Citas, Mi escritorio) junto con las primeras vistas de sermones.

@@ -1,9 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Suspense } from "react";
 import { Lora, Roboto } from "next/font/google";
-import { Encabezado } from "@/components/Encabezado";
-import { Footer } from "@/components/Footer";
-import { BotonSesion } from "@/features/auth/components/BotonSesion";
 import "./globals.css";
 
 const lora = Lora({
@@ -30,23 +26,15 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f0ec" },
-    { media: "(prefers-color-scheme: dark)", color: "#1a1019" },
+    { media: "(prefers-color-scheme: light)", color: "#fbf8f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#161015" },
   ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={`${lora.variable} ${roboto.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">
-        <Encabezado>
-          <Suspense>
-            <BotonSesion />
-          </Suspense>
-        </Encabezado>
-        {children}
-        <Footer />
-      </body>
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

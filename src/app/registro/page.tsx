@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { AccesoDividido } from "@/features/auth/components/Acceso";
 import { RegistroForm } from "@/features/auth/components/RegistroForm";
 
 export const metadata: Metadata = { title: "Crear cuenta" };
+
+const VERSICULO = {
+  texto: "Lámpara es a mis pies tu palabra, y lumbrera a mi camino.",
+  cita: "Salmo 119:105",
+};
 
 async function Formulario({ searchParams }: Pick<PageProps<"/registro">, "searchParams">) {
   const { confirmar } = await searchParams;
@@ -11,11 +17,10 @@ async function Formulario({ searchParams }: Pick<PageProps<"/registro">, "search
 
 export default function Registro(props: PageProps<"/registro">) {
   return (
-    <main className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center px-6 py-16">
-      <h1 className="mb-6 font-display text-3xl font-semibold">Crear cuenta</h1>
+    <AccesoDividido versiculo={VERSICULO}>
       <Suspense>
         <Formulario searchParams={props.searchParams} />
       </Suspense>
-    </main>
+    </AccesoDividido>
   );
 }
