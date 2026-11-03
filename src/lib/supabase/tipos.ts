@@ -278,6 +278,7 @@ export type Database = {
           resumen: string | null
           serie_id: string | null
           slug: string
+          tamano: number | null
           titulo: string
           vistas: number
         }
@@ -295,6 +296,7 @@ export type Database = {
           resumen?: string | null
           serie_id?: string | null
           slug: string
+          tamano?: number | null
           titulo: string
           vistas?: number
         }
@@ -312,6 +314,7 @@ export type Database = {
           resumen?: string | null
           serie_id?: string | null
           slug?: string
+          tamano?: number | null
           titulo?: string
           vistas?: number
         }
@@ -353,6 +356,7 @@ export type Database = {
           resumen: string | null
           serie_id: string | null
           slug: string
+          tamano: number | null
           titulo: string
           vistas: number
         }[]

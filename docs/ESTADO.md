@@ -36,7 +36,7 @@
 
 ## Pendiente (en orden)
 
-0. [ ] Aplicar `supabase/migrations/20261103000200_limites.sql` (`npx supabase db push --linked`) y luego `npm run tipos` (agrega la columna `sermones.tamano`). Límites holgados para sermones (1 MB cada uno, 50 MB por autor, 30 nuevos al día), topes de perfiles, notas, series, citas y etiquetas, y limpieza de `sermon_vistas`. Todo explicado en `docs/LIMITES.md`.
+0. [x] Migración `20261103000200_limites.sql` aplicada y tipos regenerados (`sermones.tamano`). Detalle en `docs/LIMITES.md`.
 
 1. [ ] Crear el proyecto Supabase `fiel-dev`, apuntar `.env.local` a él y configurar Vercel *Preview* (`GUIA-CONFIGURACION.md`, sección 9). Hasta entonces `npm run dev` usa la BD de producción.
 2. [ ] Secrets de GitHub para el keep-alive y fusionar `fiel` en `main` para que el cron funcione.
