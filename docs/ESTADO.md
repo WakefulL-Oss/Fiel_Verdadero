@@ -32,11 +32,11 @@
 - [x] Shell del escritorio en `/dashboard/*` (diseño «2a Inicio»): header de 48px con sección actual, barra lateral con modos expandida / contraída / al pasar el cursor (guardado en el navegador, sin salto al cargar), atajo `C` para crear. Vistas: Inicio (compositor, sermones recientes, tus borradores), Sermones, Borradores, Mis publicaciones y Crear sermón (marcador hasta el editor). Lo que el diseño muestra sin función real (búsqueda, notificaciones, likes, comentarios, seguir, versículo del día, estudios, citas, comunidad, guardados, ajustes) no se incluyó.
 - [x] Sesión y caché: `lib/sesion.ts` (`obtenerUsuario` con `getClaims` y `use cache: private`, `exigirUsuario`); nombre desde `perfiles` en `use cache` con etiqueta `perfil:<id>`; sermones públicos en `use cache` con etiqueta `sermones`; los propios en caché privada con etiqueta `sermones:<id>`. Proxy: verifica claims, conserva `next`, aplica las cabeceras anti‑caché de `@supabase/ssr`. Cerrar sesión: solo este dispositivo y `refresh()`.
 - [x] Seguridad: `rutaSegura` interpreta la URL (sin caracteres de control); HSTS, COOP, `X-Frame-Options` y `upgrade-insecure-requests`; el build falla sin `NEXT_PUBLIC_SUPABASE_URL`.
+- [x] Migraciones de permisos aplicadas y probadas en remoto: `permisos_columnas` (nadie se cambia el `rol`, columnas editables restringidas, `rol` oculto, índice de borradores) y `politicas` (avatar solo https, vistas una por usuario y día, portadas sin listado público y con `update`, reportes solo de sermones publicados). Claves JWT: el proyecto publica una llave ES256 y la app usa la clave `sb_publishable_`.
 
 ## Pendiente (en orden)
 
-0. [ ] Aplicar `supabase/migrations/20261103000100_politicas.sql` (`npx supabase db push --linked`): avatar solo https, vistas una por usuario y día, portadas sin listado público y con `update`, reportes solo de sermones publicados. (`20261103000000_permisos_columnas.sql` ya está aplicada.)
-0b. [ ] **Límites de tamaño en la BD** (migración nueva). Hoy la validación de `schema.ts` solo protege nuestros formularios; la API de Supabase acepta llamadas directas con la clave pública. Añadir `check`:
+0. [ ] **Límites de tamaño en la BD** (migración nueva). Hoy la validación de `schema.ts` solo protege nuestros formularios; la API de Supabase acepta llamadas directas con la clave pública. Añadir `check`:
    - `perfiles`: `nombre_completo` 1–100, `iglesia` ≤ 150 (y truncar `full_name` en `handle_new_user`).
    - `sermones`: `pasaje_texto` ≤ 300, `contenido` con `pg_column_size(contenido) <= 512000`, `portada_url` con `es_url_https`.
    - `sermon_notas.notas` ≤ 50 000; `series.descripcion` ≤ 1000.
@@ -54,9 +54,9 @@
 8. [ ] Generación de PDF en el navegador.
 9. [ ] Búsqueda en español, etiquetas y citas bíblicas.
 10. [ ] Biblia de dominio público (RV 1909 u otra) como JSON estático.
-11. [ ] Subida de portadas (WebP, máx. 300 KB).
+11. [ ] Subida de portadas y fotos de perfil (WebP, máx. 300 KB). Avatar: guardar solo la ruta en Storage (`<id>/avatar.webp`), no URLs externas; con Facebook, copiar la foto a Storage al entrar. Migración: `avatar_url` debe ser ruta de la carpeta propia.
 12. [ ] Reportes y panel de moderación.
 13. [ ] Primer respaldo manual de producción (`RESPALDOS.md`).
 14. [ ] Al llegar el editor: enlazar filas de borradores a `/dashboard/sermones/[id]/editar`, invalidar con `updateTag('sermones:<id>')`, `updateTag('sermones')` al publicar y `updateTag('perfil:<id>')` al editar el perfil.
 15. [ ] Facebook: si el login abre una ventana emergente, cambiar `Cross-Origin-Opener-Policy` a `same-origin-allow-popups`.
-16. [ ] Revisar: comprobar en Supabase que las claves JWT son asimétricas (si no, `getClaims` va por red); CSP sin `'unsafe-inline'` (hash de `SCRIPT_TEMA`) si Next lo permite con PPR.
+16. [ ] Revisar: en Supabase → JWT Keys, que la llave **actual** sea ECC P-256 (no solo en espera); CSP sin `'unsafe-inline'` (hash de `SCRIPT_TEMA`) si Next lo permite con PPR.
