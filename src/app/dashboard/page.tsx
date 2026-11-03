@@ -32,7 +32,7 @@ export default function Dashboard() {
       <Encabezado seccion="Dashboard">
         <BotonSesion dashboard={false} />
       </Encabezado>
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-10 sm:px-6 lg:px-8">
+      <main className="mx-auto w-full max-w-[75rem] flex-1 px-4 py-10 sm:px-6 lg:px-8">
         <Suspense fallback={<div className="h-9 w-48 rounded-lg bg-realce" />}>
           <Bienvenida />
         </Suspense>

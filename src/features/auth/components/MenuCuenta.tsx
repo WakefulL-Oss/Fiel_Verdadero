@@ -21,12 +21,12 @@ export function MenuCuenta({ nombre, correo }: { nombre: string; correo: string 
     <Menu>
       <MenuDisparador
         aria-label="Menú de la cuenta"
-        className="flex size-[30px] shrink-0 items-center justify-center rounded-full bg-[#3a1e3c] font-display text-[13px] font-semibold text-[#d9ae52] ring-1 ring-border transition-[box-shadow] hover:ring-border-fuerte data-[state=open]:ring-2 data-[state=open]:ring-accent"
+        className="flex size-[30px] shrink-0 cursor-pointer items-center outline-none justify-center rounded-full bg-[#3a1e3c] font-display text-[13px] font-semibold text-[#d9ae52]"
       >
         {inicial}
       </MenuDisparador>
-      <MenuContenido align="end" className="w-56">
-        <div className="flex items-center gap-2 px-2 py-1.5 text-xs text-foreground">
+      <MenuContenido align="end" className="w-max max-w-[min(20rem,calc(100vw-1rem))]">
+        <div className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-foreground">
           <UserRound size={12} className="shrink-0" />
           <span className="truncate">{correo}</span>
         </div>

@@ -12,6 +12,7 @@ const REGLAS = [
 
 export function PasswordNueva({ etiqueta = "Contraseña" }: { etiqueta?: string }) {
   const [valor, setValor] = useState("");
+  const [visibles, setVisibles] = useState(false);
   return (
     <div className="flex flex-col gap-2">
       <Grupo etiqueta={etiqueta} htmlFor="password">
@@ -25,22 +26,27 @@ export function PasswordNueva({ etiqueta = "Contraseña" }: { etiqueta?: string 
           required
           value={valor}
           onChange={(e) => setValor(e.target.value)}
+          onFocus={() => setVisibles(true)}
         />
       </Grupo>
-      <ul className="flex flex-wrap gap-x-3.5 gap-y-1">
-        {REGLAS.map(({ texto, cumple }) => {
-          const ok = cumple(valor);
-          return (
-            <li
-              key={texto}
-              className={`flex items-center gap-1.5 text-[12.5px] transition-colors ${ok ? "text-exito" : "text-tenue"}`}
-            >
-              {ok ? <CircleCheck size={13} /> : <Circle size={13} />}
-              {texto}
-            </li>
-          );
-        })}
-      </ul>
+      <div
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-(--ease-salida) ${visibles ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+      >
+        <ul className="flex flex-col gap-1 overflow-hidden">
+          {REGLAS.map(({ texto, cumple }) => {
+            const ok = cumple(valor);
+            return (
+              <li
+                key={texto}
+                className={`flex items-center gap-1.5 text-[12.5px] transition-colors ${ok ? "text-exito" : "text-tenue"}`}
+              >
+                {ok ? <CircleCheck size={13} /> : <Circle size={13} />}
+                {texto}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

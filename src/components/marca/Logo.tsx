@@ -25,7 +25,7 @@ export function Logo({ grande = false }: { grande?: boolean }) {
 export function LogoApilado() {
   return (
     <Link href="/" aria-label="Fiel y Verdadero, inicio" className="flex flex-col items-center gap-3.5 pb-1">
-      <Menora className="h-[50px] w-auto text-foreground" />
+      <Menora className="h-[64px] w-auto text-foreground" />
       <Nombre className="text-[21px]" />
       <span aria-hidden className="h-[1.5px] w-7 bg-accent" />
     </Link>

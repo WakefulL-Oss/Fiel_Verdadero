@@ -1,12 +1,10 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import Link from "next/link";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useActionState, useEffect, useState } from "react";
 import { Boton, Campo, Grupo, MensajeForm } from "@/components/Formulario";
-import { Turnstile } from "@/components/Turnstile";
+import { CAPTCHA_ACTIVO, Turnstile } from "@/components/Turnstile";
 import { reenviarCodigo, registrar, verificarRegistro, type EstadoAuth } from "../actions";
-import { AbrirCorreo } from "./AbrirCorreo";
 import { Pasos, Titulo } from "./Acceso";
 import { CampoCodigo } from "./CampoCodigo";
 import { PasswordNueva } from "./PasswordNueva";
@@ -22,24 +20,6 @@ function useCuentaAtras() {
   return [segundos, () => setSegundos(ESPERA)] as const;
 }
 
-function Acepto() {
-  return (
-    <label className="flex cursor-pointer items-start gap-2.5 text-[13px] leading-normal">
-      <input type="checkbox" name="acepto" required className="peer sr-only" />
-      <span
-        aria-hidden
-        className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded border border-border-fuerte bg-surface text-primario-texto transition-colors peer-checked:border-primario peer-checked:bg-primario peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent [&>svg]:opacity-0 peer-checked:[&>svg]:opacity-100"
-      >
-        <Check size={12} strokeWidth={3} />
-      </span>
-      <span>
-        Acepto los <Link href="/terminos" className="text-foreground underline">Términos</Link> y la{" "}
-        <Link href="/privacidad" className="text-foreground underline">Política de privacidad</Link>
-      </span>
-    </label>
-  );
-}
-
 export function RegistroForm({ correoInicial }: { correoInicial?: string }) {
   const inicial: EstadoAuth = correoInicial
     ? { paso: "codigo", correo: correoInicial, aviso: "Confirma tu correo con el código que te enviamos" }
@@ -48,6 +28,7 @@ export function RegistroForm({ correoInicial }: { correoInicial?: string }) {
   const [verificado, verificarAccion, verificando] = useActionState(verificarRegistro, {
     paso: "codigo",
   } as EstadoAuth);
+  const [captcha, setCaptcha] = useState("");
 
   if (registro.paso === "datos") {
     return (
@@ -81,13 +62,12 @@ export function RegistroForm({ correoInicial }: { correoInicial?: string }) {
             />
           </Grupo>
           <PasswordNueva />
-          <Acepto />
-          <Turnstile reinicio={registro} />
           <MensajeForm error={registro.error} />
-          <Boton disabled={registrando} className="w-full">
+          <Boton disabled={registrando || (CAPTCHA_ACTIVO && !captcha)} className="w-full">
             {registrando ? "Creando…" : "Continuar"}
             <ArrowRight size={15} />
           </Boton>
+          <Turnstile reinicio={registro} alCambiar={setCaptcha} />
         </form>
       </>
     );
@@ -108,7 +88,6 @@ export function RegistroForm({ correoInicial }: { correoInicial?: string }) {
           {verificando ? "Verificando…" : "Verificar"}
         </Boton>
       </form>
-      <AbrirCorreo />
       <Reenvio correo={registro.correo} />
     </>
   );

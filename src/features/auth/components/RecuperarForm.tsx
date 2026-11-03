@@ -1,8 +1,8 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { Boton, Campo, Grupo, MensajeForm, Tecla } from "@/components/Formulario";
-import { Turnstile } from "@/components/Turnstile";
+import { CAPTCHA_ACTIVO, Turnstile } from "@/components/Turnstile";
 import {
   cambiarPassword,
   pedirRecuperacion,
@@ -54,6 +54,7 @@ export function RecuperarForm() {
   const [pedido, pedirAccion, pidiendo] = useActionState(pedirRecuperacion, {
     paso: "datos",
   } as EstadoAuth);
+  const [captcha, setCaptcha] = useState("");
   const [verificado, verificarAccion, verificando] = useActionState(verificarRecuperacion, {
     paso: "codigo",
   } as EstadoAuth);
@@ -95,14 +96,14 @@ export function RecuperarForm() {
               required
             />
           </Grupo>
-          <Turnstile reinicio={pedido} />
           <MensajeForm error={pedido.error} />
-          <Boton disabled={pidiendo} className="w-full">
+          <Boton disabled={pidiendo || (CAPTCHA_ACTIVO && !captcha)} className="w-full">
             {pidiendo ? "Enviando…" : "Enviarme un código"}
             <span className="hidden sm:inline-flex">
               <Tecla oscura>↵</Tecla>
             </span>
           </Boton>
+          <Turnstile reinicio={pedido} alCambiar={setCaptcha} />
         </form>
         <ListaPasos actual={1} />
       </>

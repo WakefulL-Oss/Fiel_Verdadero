@@ -13,7 +13,7 @@ export function Encabezado({
 }) {
   return (
     <header className="no-imprimir sticky top-0 z-10 border-b border-border-suave bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-[75rem] items-center gap-6 px-4 sm:px-6 lg:px-8">
         <Logo />
         {seccion && (
           <span className="hidden items-center gap-4 sm:flex">

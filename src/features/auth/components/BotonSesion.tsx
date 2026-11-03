@@ -46,7 +46,7 @@ async function SegunSesion({ grande, dashboard }: { grande: boolean; dashboard: 
     <div className="flex items-center gap-2">
       {dashboard && (
         <span className="hidden sm:inline-flex">
-          <Link href="/dashboard" className={boton("normal", "chico")}>
+          <Link href="/dashboard" className={boton("suave", "chico")}>
             Dashboard
           </Link>
         </span>

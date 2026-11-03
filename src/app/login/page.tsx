@@ -14,7 +14,10 @@ async function Formulario({ searchParams }: Pick<PageProps<"/login">, "searchPar
 
 export default function Login(props: PageProps<"/login">) {
   return (
-    <AccesoCentrado enlace={{ pregunta: "¿Nuevo aquí?", texto: "Crear cuenta", href: "/registro" }}>
+    <AccesoCentrado
+      enlace={{ pregunta: "¿Nuevo aquí?", texto: "Crear cuenta", href: "/registro" }}
+      enlaceMovil={{ pregunta: "¿No tienes cuenta?", texto: "Regístrate", href: "/registro" }}
+    >
       <Suspense>
         <Formulario searchParams={props.searchParams} />
       </Suspense>

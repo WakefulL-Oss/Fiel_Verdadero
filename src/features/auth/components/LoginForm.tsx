@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { CampoPassword } from "@/components/CampoPassword";
-import { Boton, Campo, Grupo, MensajeForm, Tecla } from "@/components/Formulario";
-import { Turnstile } from "@/components/Turnstile";
+import { Boton, Campo, Grupo, MensajeForm } from "@/components/Formulario";
+import { CAPTCHA_ACTIVO, Turnstile } from "@/components/Turnstile";
 import { iniciarSesion, type EstadoAuth } from "../actions";
 import { Titulo } from "./Acceso";
 
@@ -12,11 +12,12 @@ export function LoginForm({ next }: { next?: string }) {
   const [estado, accion, pendiente] = useActionState(iniciarSesion, {
     paso: "datos",
   } as EstadoAuth);
+  const [captcha, setCaptcha] = useState("");
 
   return (
     <>
       <Titulo titulo="Entra a tu cuenta" centrado>
-        Continúa tu estudio donde lo dejaste.
+        Continúa aprendiendo...
       </Titulo>
       <form action={accion} className="flex flex-col gap-3.5">
         {next && <input type="hidden" name="next" value={next} />}
@@ -48,13 +49,10 @@ export function LoginForm({ next }: { next?: string }) {
             required
           />
         </Grupo>
-        <Turnstile reinicio={estado} />
+        <Turnstile reinicio={estado} alCambiar={setCaptcha} />
         <MensajeForm error={estado.error} />
-        <Boton disabled={pendiente} className="w-full">
+        <Boton disabled={pendiente || (CAPTCHA_ACTIVO && !captcha)} className="w-full">
           {pendiente ? "Entrando…" : "Entrar"}
-          <span className="hidden sm:inline-flex">
-            <Tecla oscura>↵</Tecla>
-          </span>
         </Boton>
       </form>
     </>

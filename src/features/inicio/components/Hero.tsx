@@ -7,7 +7,7 @@ export function Hero({ acciones }: { acciones: React.ReactNode }) {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--border)_1px,transparent_1px)] [background-size:22px_22px] opacity-70 [mask-image:radial-gradient(ellipse_70%_65%_at_50%_30%,#000_0%,transparent_75%)]"
       />
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 pt-16 pb-14 text-center sm:px-6 sm:pt-24 sm:pb-20 lg:px-8">
+      <div className="relative mx-auto flex max-w-[75rem] flex-col items-center px-4 pt-16 pb-14 text-center sm:px-6 sm:pt-24 sm:pb-20 lg:px-8">
         <h1 className="entrada max-w-3xl font-display text-[40px] leading-[1.08] font-bold text-balance text-foreground sm:text-[56px]">
           Escribe, comparte y estudia sermones
         </h1>

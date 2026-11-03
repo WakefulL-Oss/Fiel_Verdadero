@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AccesoDividido } from "@/features/auth/components/Acceso";
+import { LeyendaLegal } from "@/features/auth/components/LeyendaLegal";
 import { RegistroForm } from "@/features/auth/components/RegistroForm";
 
 export const metadata: Metadata = { title: "Crear cuenta" };
 
 const VERSICULO = {
-  texto: "Lámpara es a mis pies tu palabra, y lumbrera a mi camino.",
-  cita: "Salmo 119:105",
+  texto:
+    "Entonces vi el cielo abierto; y he aquí un caballo blanco, y el que lo montaba se llamaba Fiel\u00a0y\u00a0Verdadero, y con justicia juzga y pelea.",
+  cita: "Apocalipsis 19:11",
 };
 
 async function Formulario({ searchParams }: Pick<PageProps<"/registro">, "searchParams">) {
@@ -17,7 +19,7 @@ async function Formulario({ searchParams }: Pick<PageProps<"/registro">, "search
 
 export default function Registro(props: PageProps<"/registro">) {
   return (
-    <AccesoDividido versiculo={VERSICULO}>
+    <AccesoDividido versiculo={VERSICULO} pie={<LeyendaLegal />}>
       <Suspense>
         <Formulario searchParams={props.searchParams} />
       </Suspense>

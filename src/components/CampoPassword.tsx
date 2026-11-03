@@ -13,7 +13,7 @@ export function CampoPassword(props: Omit<ComponentProps<"input">, "type">) {
         type="button"
         onClick={() => setVisible((v) => !v)}
         aria-label={visible ? "Ocultar contraseña" : "Mostrar contraseña"}
-        className="absolute top-1 right-1 flex size-7 items-center justify-center rounded-md text-tenue transition-colors hover:bg-realce hover:text-foreground"
+        className="absolute top-1 right-1 flex size-7 items-center justify-center cursor-pointer rounded-md border border-border-suave bg-realce/50 text-muted transition-colors hover:border-border hover:bg-realce hover:text-foreground focus-visible:bg-realce focus-visible:text-foreground focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-border-fuerte"
       >
         {visible ? <EyeOff size={15} /> : <Eye size={15} />}
       </button>

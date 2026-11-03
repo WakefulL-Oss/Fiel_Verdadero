@@ -23,7 +23,7 @@ export function EnlacesLegales({ className = "" }: { className?: string }) {
 export function Footer() {
   return (
     <footer className="no-imprimir border-t border-border-suave bg-panel">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 text-[12.5px] text-tenue sm:h-14 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-0 lg:px-8">
+      <div className="mx-auto flex max-w-[75rem] flex-col gap-3 px-4 py-4 text-[12.5px] text-tenue sm:h-14 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-0 lg:px-8">
         <span>© 2026 {SITE_NAME}</span>
         <div className="flex flex-wrap items-center gap-x-[18px] gap-y-2">
           <EnlacesLegales />

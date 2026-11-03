@@ -1,7 +1,7 @@
 export function Cierre({ acciones }: { acciones: React.ReactNode }) {
   return (
     <section className="border-t border-border-suave bg-panel">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-10 px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
+      <div className="mx-auto flex max-w-[75rem] flex-col items-center gap-10 px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
         <figure className="flex max-w-3xl flex-col items-center gap-5">
           <blockquote className="font-display text-[26px] leading-[1.4] font-medium text-balance text-foreground sm:text-[32px]">
             «Entonces vi el cielo abierto; y he aquí un caballo blanco, y el que lo montaba se llamaba

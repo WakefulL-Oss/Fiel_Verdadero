@@ -9,6 +9,8 @@ const VARIANTES = {
   primario:
     "bg-primario bg-[linear-gradient(to_bottom,rgb(255_255_255/0.015),rgb(0_0_0/0.01))] text-primario-texto shadow-[var(--sombra-boton-elevada)] hover:bg-primario-hover",
   normal: "bg-surface text-foreground shadow-[var(--sombra-boton)] hover:bg-realce",
+  suave:
+    "bg-surface text-foreground shadow-[var(--sombra-boton)] hover:bg-[color-mix(in_srgb,var(--realce)_30%,var(--surface))]",
   texto: "text-muted hover:bg-realce hover:text-foreground",
 };
 
@@ -26,7 +28,7 @@ export function boton(variante: Variante = "primario", tamano: Tamano = "grande"
 }
 
 const ESTILO_CAMPO =
-  "h-9 w-full rounded-lg border border-border bg-surface px-2.5 text-sm text-foreground outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-tenue hover:border-border-fuerte focus:border-accent focus:shadow-[0_0_0_3px_var(--anillo)]";
+  "h-9 w-full rounded-lg border border-border bg-surface px-2.5 text-sm text-foreground outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-tenue hover:border-border-fuerte focus:border-foco";
 
 function Etiqueta({ className = "", ...props }: ComponentProps<"label">) {
   return (

@@ -24,7 +24,7 @@ const BLOQUES = [
 
 export function Caracteristicas() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <section className="mx-auto max-w-[75rem] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
       <div className="grid gap-x-12 gap-y-14 md:grid-cols-3">
         {BLOQUES.map((b) => (
           <article key={b.id} id={b.id} className="scroll-mt-24 border-t border-border pt-6">

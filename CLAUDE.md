@@ -3,7 +3,7 @@
 Biblioteca gratuita de sermones en español (escribir, publicar, compartir, PDF). Sin fines comerciales, costo $0. Ver @AGENTS.md (Next 16 ≠ el que conoces: leer `node_modules/next/dist/docs/` antes de usar APIs nuevas; `middleware` ahora es `proxy`).
 
 ## Infra
-- **Ramas:** trabajar siempre en `fiel` (local y remota); `main` = producción, solo por PR desde `fiel`. Nunca push directo a `main`. Local usa el proyecto Supabase `fiel-dev`, no producción.
+- **Ramas:** trabajar siempre en `fiel` (local y remota); `main` = producción, solo por PR desde `fiel`. Nunca push directo a `main`. Aún no existe `fiel-dev`: local usa el mismo Supabase y las mismas claves que producción, así que cada prueba crea usuarios reales y envía correos reales (borrar los de prueba antes del lanzamiento). Al crear `fiel-dev`, volver a esta regla: local = `fiel-dev`.
 - **Front/SSR:** Next.js 16 App Router + TS + Tailwind 4 → Vercel Hobby (deploy a producción en push a `main`; otras ramas = Preview).
 - **Datos/Auth/Storage:** Supabase Free (Postgres + RLS). El navegador consulta Supabase directo; sin backend propio.
 - **Login:** correo + contraseña (Supabase Auth); código por correo (Resend vía SMTP) solo para verificar el registro y recuperar la contraseña; Facebook después. Sin Google, sin Auth UI.
@@ -45,6 +45,7 @@ Un módulo no importa de otro `features/*`; comparte vía `lib/` o `components/`
 - Densidad alta: espaciado reducido, `max-w` de lectura, sin heros vacíos ni relleno.
 - Sin textos explicativos, subtítulos ni instrucciones innecesarias; etiquetas cortas, estados vacíos de una línea.
 - Marca en `docs/marca/README.md` (paleta púrpura real, Lora + Roboto). Tokens de `globals.css` (fondos `background`/`surface`/`panel`/`realce`; texto `foreground`/`muted`/`tenue`; bordes `border`/`border-fuerte`/`border-suave`/`linea`; `accent` = oro, `anillo`, `aviso*`, `primario*`, `error`, `exito`); controles en `components/Formulario.tsx` (`boton(variante, tamano)`, `Campo`, `Grupo`), menús en `components/ui/Menu.tsx`; botones, nav y menús siguen `docs/diseno/SUPABASE.md`; `font-display` (Lora) solo en títulos. El oro no se usa en texto pequeño (contraste). Soportar modo oscuro.
+- **Sin alturas fijas en layouts:** nunca `h-dvh`/`h-screen`/`overflow-hidden` ni medidas en px para el alto de páginas, cabeceras o pies. Usar `min-h-dvh` + flex, y espacios verticales fluidos con `clamp()` y `dvh` (ej. `clamp(56px,9dvh,84px)`) para que todo quepa según la pantalla sin recortar contenido. Alturas fijas solo en controles (botones, inputs, avatares).
 - Mobile-first; componentes reutilizables en `src/components/` antes de duplicar clases.
 
 ## Seguridad y licencia

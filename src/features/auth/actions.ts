@@ -78,7 +78,6 @@ export async function registrar(
     nombre,
     correo: formData.get("correo"),
     password: formData.get("password"),
-    acepto: formData.get("acepto"),
   });
   if (!datos.success) {
     return { paso: "datos", nombre, correo: correoDe(formData), error: datos.error.issues[0].message };

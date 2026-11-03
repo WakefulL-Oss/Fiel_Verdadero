@@ -20,14 +20,14 @@ export function MenuContenido({ className = "", ...props }: DM.DropdownMenuConte
         sideOffset={6}
         collisionPadding={8}
         {...props}
-        className={`menu-contenido z-50 min-w-32 overflow-hidden rounded-md border border-border-suave bg-surface p-1 shadow-[var(--sombra-menu)] ${className}`}
+        className={`menu-contenido z-50 min-w-32 overflow-hidden rounded-md border border-border-suave bg-surface p-1.5 shadow-[var(--sombra-menu)] ${className}`}
       />
     </DM.Portal>
   );
 }
 
 export function MenuItem({ className = "", ...props }: DM.DropdownMenuItemProps) {
-  return <DM.Item {...props} className={`${ITEM} px-2 ${className}`} />;
+  return <DM.Item {...props} className={`${ITEM} px-2.5 ${className}`} />;
 }
 
 export function MenuRadioItem({ children, ...props }: DM.DropdownMenuRadioItemProps) {

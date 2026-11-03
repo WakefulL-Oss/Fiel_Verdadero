@@ -3,8 +3,8 @@
 /* Cada token: light-dark(claro, oscuro). El tema lo decide color-scheme (ver abajo). */
 :root {
   color-scheme: light;
-  --background: light-dark(#fbf8f5, #161015);
-  --surface: light-dark(#fffdfb, #1e161d);
+  --background: light-dark(#fefcfa, #161015);
+  --surface: light-dark(#ffffff, #1e161d);
   --panel: light-dark(#f5f0ec, #120c11);
   --realce: light-dark(#ede5e0, #2c2030);
   --foreground: light-dark(#3a1e3c, #f5f0ec);
@@ -23,6 +23,7 @@
   --primario: light-dark(#3a1e3c, #f5f0ec);
   --primario-hover: light-dark(#4e2b51, #e6dcdd);
   --primario-texto: light-dark(#fbf8f5, #3a1e3c);
+  --foco: light-dark(#e8c04e, #e9c35f);
   --error: light-dark(#9b2c2c, #f08a8f);
   --exito: light-dark(#4e7a4a, #8fbf8a);
 
@@ -74,6 +75,7 @@
   --color-primario: var(--primario);
   --color-primario-hover: var(--primario-hover);
   --color-primario-texto: var(--primario-texto);
+  --color-foco: var(--foco);
   --color-error: var(--error);
   --color-exito: var(--exito);
   --font-sans: var(--font-roboto), Arial, sans-serif;
@@ -92,9 +94,11 @@ body {
   color: var(--foreground);
 }
 
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
 a {
@@ -104,6 +108,10 @@ a {
 
 input {
   caret-color: var(--foreground);
+}
+
+input:focus-visible {
+  outline: none;
 }
 
 /* Entrada del hero (una sola vez, al cargar). */
