@@ -1,43 +1,47 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import { Encabezado } from "@/components/Encabezado";
-import { Footer } from "@/components/Footer";
-import { BotonSesion } from "@/features/auth/components/BotonSesion";
-import { obtenerPerfil, obtenerUsuario } from "@/features/auth/queries";
+import { Tarjeta } from "@/components/Tarjeta";
+import { obtenerPerfil } from "@/features/auth/queries";
+import { Compositor } from "@/features/sermones/components/Compositor";
+import { ListaPropios } from "@/features/sermones/components/ListaPropios";
+import { Recientes } from "@/features/sermones/components/Recientes";
 
-export const metadata: Metadata = { title: "Dashboard" };
+export const metadata: Metadata = { title: "Inicio" };
 
-async function Bienvenida() {
-  const usuario = await obtenerUsuario();
-  if (!usuario) redirect("/login?next=/dashboard");
-  const perfil = await obtenerPerfil(usuario.id);
-  const nombre = perfil?.nombre_completo?.split(" ")[0];
-
-  return (
-    <>
-      <h1 className="font-display text-[28px] leading-tight font-bold text-foreground">
-        {nombre ? `Hola, ${nombre}` : "Hola"}
-      </h1>
-      <p className="mt-6 rounded-xl border border-border-suave bg-surface px-5 py-4 text-[14.5px]">
-        Todavía no tienes sermones. El editor llegará pronto.
-      </p>
-    </>
-  );
+async function CompositorUsuario() {
+  const perfil = await obtenerPerfil();
+  if (!perfil) redirect("/login?next=/dashboard");
+  return <Compositor nombre={perfil.nombre} />;
 }
 
-export default function Dashboard() {
+const HUECO = <div className="min-h-[66px] rounded-xl border border-border-suave bg-surface" />;
+
+export default function Inicio() {
   return (
-    <>
-      <Encabezado seccion="Dashboard">
-        <BotonSesion dashboard={false} />
-      </Encabezado>
-      <main className="mx-auto w-full max-w-[75rem] flex-1 px-4 py-10 sm:px-6 lg:px-8">
-        <Suspense fallback={<div className="h-9 w-48 rounded-lg bg-realce" />}>
-          <Bienvenida />
+    <div className="mx-auto flex max-w-[57rem] gap-6">
+      <h1 className="sr-only">Inicio</h1>
+      <div className="flex min-w-0 max-w-[37.5rem] flex-1 flex-col gap-4">
+        <Suspense fallback={HUECO}>
+          <CompositorUsuario />
         </Suspense>
-      </main>
-      <Footer />
-    </>
+        <Recientes />
+      </div>
+      <aside className="hidden w-[18.75rem] shrink-0 xl:block">
+        <Tarjeta
+          titulo="Tus borradores"
+          accion={
+            <Link href="/dashboard/borradores" className="text-xs text-muted hover:text-foreground">
+              Ver todos
+            </Link>
+          }
+        >
+          <Suspense fallback={<p className="px-4 py-3 text-sm text-tenue">…</p>}>
+            <ListaPropios estado="borrador" vacio="No tienes borradores." limite={5} />
+          </Suspense>
+        </Tarjeta>
+      </aside>
+    </div>
   );
 }

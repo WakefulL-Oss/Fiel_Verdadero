@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-Última actualización: 2 de noviembre de 2026.
+Última actualización: 3 de noviembre de 2026.
 
 ## Hecho
 
@@ -8,7 +8,7 @@
 - [x] Portada provisional (sin logo) con pie de página.
 - [x] Esquema de base de datos y políticas RLS (`supabase/migrations/20261031000000_init.sql`) y etiquetas semilla.
 - [x] Migraciones aplicadas al proyecto remoto de Supabase.
-- [x] Clientes de Supabase para navegador y servidor (`src/lib/supabase/`).
+- [x] Clientes de Supabase para servidor (`server.ts`, con sesión) y público sin cookies (`publico.ts`, para `use cache`); tipos generados en `tipos.ts` (`npm run tipos`). El cliente de navegador se crea con el editor.
 - [x] Licencia PolyForm Noncommercial + `NOTICE.md` bilingüe.
 - [x] `.env.local` ignorado por git; `.env.example` versionado.
 - [x] Repositorio en GitHub y despliegue automático en Vercel.
@@ -29,7 +29,13 @@
 - [x] Landing en `/` (header y pie centrados, vista previa del editor, bloques Escribir/Compartir/PDF) y `/dashboard` (protegido en `src/proxy.ts` y en la página). Tras entrar, login, registro y recuperación llevan a `/dashboard`. El botón de sesión del header muestra Entrar/Crear cuenta o Dashboard según la sesión, con la parte dinámica en streaming (Suspense) sobre una página estática.
 - [x] Header, botones y menús al estilo de Supabase (`docs/diseno/SUPABASE.md`): logo sin separador, enlaces que se iluminan, botones «Iniciar sesión» y «Comienza aquí», avatar con inicial y menú de cuenta (Dashboard, Tema, Cerrar sesión), selector de tema en el pie para visitantes. Tokens con `light-dark()`.
 
+- [x] Shell del escritorio en `/dashboard/*` (diseño «2a Inicio»): header de 48px con sección actual, barra lateral con modos expandida / contraída / al pasar el cursor (guardado en el navegador, sin salto al cargar), atajo `C` para crear. Vistas: Inicio (compositor, sermones recientes, tus borradores), Sermones, Borradores, Mis publicaciones y Crear sermón (marcador hasta el editor). Lo que el diseño muestra sin función real (búsqueda, notificaciones, likes, comentarios, seguir, versículo del día, estudios, citas, comunidad, guardados, ajustes) no se incluyó.
+- [x] Sesión y caché: `lib/sesion.ts` (`obtenerUsuario` con `getClaims` y `use cache: private`, `exigirUsuario`); nombre desde `perfiles` en `use cache` con etiqueta `perfil:<id>`; sermones públicos en `use cache` con etiqueta `sermones`; los propios en caché privada con etiqueta `sermones:<id>`. Proxy: verifica claims, conserva `next`, aplica las cabeceras anti‑caché de `@supabase/ssr`. Cerrar sesión: solo este dispositivo y `refresh()`.
+- [x] Seguridad: `rutaSegura` interpreta la URL (sin caracteres de control); HSTS, COOP, `X-Frame-Options` y `upgrade-insecure-requests`; el build falla sin `NEXT_PUBLIC_SUPABASE_URL`.
+
 ## Pendiente (en orden)
+
+0. [ ] **Urgente:** aplicar `supabase/migrations/20261103000000_permisos_columnas.sql` (`npx supabase db push --linked`). Corrige que cualquier usuario pueda cambiarse el `rol` a admin (el `revoke` por columnas de la migración inicial no anulaba el `grant` de tabla), restringe columnas editables de `sermones`, oculta `rol` a lectores y añade el índice de borradores. Después: con un usuario normal, `update perfiles set rol='admin'` debe fallar.
 
 1. [ ] Crear el proyecto Supabase `fiel-dev`, apuntar `.env.local` a él y configurar Vercel *Preview* (`GUIA-CONFIGURACION.md`, sección 9). Hasta entonces `npm run dev` usa la BD de producción.
 2. [ ] Secrets de GitHub para el keep-alive y fusionar `fiel` en `main` para que el cron funcione.
@@ -45,4 +51,6 @@
 11. [ ] Subida de portadas (WebP, máx. 300 KB).
 12. [ ] Reportes y panel de moderación.
 13. [ ] Primer respaldo manual de producción (`RESPALDOS.md`).
-14. [ ] Shell de la app (barra lateral «2a» del mockup: Crear sermón, Inicio, Sermones, Estudios, Citas, Mi escritorio) junto con las primeras vistas de sermones.
+14. [ ] Al llegar el editor: enlazar filas de borradores a `/dashboard/sermones/[id]/editar`, invalidar con `updateTag('sermones:<id>')`, `updateTag('sermones')` al publicar y `updateTag('perfil:<id>')` al editar el perfil.
+15. [ ] Facebook: si el login abre una ventana emergente, cambiar `Cross-Origin-Opener-Policy` a `same-origin-allow-popups`.
+16. [ ] Revisar: comprobar en Supabase que las claves JWT son asimétricas (si no, `getClaims` va por red); CSP sin `'unsafe-inline'` (hash de `SCRIPT_TEMA`) si Next lo permite con PPR.

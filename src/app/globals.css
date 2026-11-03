@@ -170,7 +170,66 @@ input:focus-visible {
   animation: menu-sale 110ms var(--ease-salida) forwards;
 }
 
+/* Barra lateral del escritorio. El modo vive en <html data-barra> (ver lib/barra.ts):
+   expandida (sin atributo), contraida, o cursor (reserva 56px y se despliega encima). */
+.barra {
+  --ancho: 13rem;
+  width: var(--ancho);
+  transition: width 200ms var(--ease-salida);
+}
+
+.barra-panel {
+  width: var(--ancho);
+  transition:
+    width 200ms var(--ease-salida),
+    box-shadow 200ms var(--ease-salida);
+}
+
+.barra-etiqueta {
+  transition: opacity 150ms var(--ease-salida);
+}
+
+:root[data-barra="contraida"] .barra {
+  --ancho: 3.5rem;
+}
+
+:root[data-barra="cursor"] .barra {
+  width: 3.5rem;
+}
+
+:root[data-barra="cursor"] .barra-panel:not(:hover, :has(:focus-visible), [data-abierta]) {
+  width: 3.5rem;
+}
+
+:root[data-barra="cursor"] .barra-panel:is(:hover, :has(:focus-visible), [data-abierta]) {
+  box-shadow: var(--sombra-menu);
+}
+
+:root[data-barra="contraida"] .barra-etiqueta,
+:root[data-barra="cursor"] .barra-panel:not(:hover, :has(:focus-visible), [data-abierta]) .barra-etiqueta {
+  opacity: 0;
+}
+
+@media (width < 48rem) {
+  .barra,
+  .barra-panel {
+    --ancho: 3.5rem;
+    width: 3.5rem !important;
+    box-shadow: none !important;
+  }
+
+  .barra-etiqueta {
+    opacity: 0 !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .barra,
+  .barra-panel,
+  .barra-etiqueta {
+    transition: none;
+  }
+
   .entrada,
   .menu-contenido[data-state="closed"] {
     animation: none;

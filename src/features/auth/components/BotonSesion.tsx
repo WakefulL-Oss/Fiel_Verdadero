@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { boton } from "@/components/Formulario";
-import { obtenerUsuario } from "../queries";
+import { obtenerPerfil } from "../queries";
 import { MenuCuenta } from "./MenuCuenta";
 
 function Visitante({ grande }: { grande: boolean }) {
@@ -33,8 +33,8 @@ function Visitante({ grande }: { grande: boolean }) {
 }
 
 async function SegunSesion({ grande, dashboard }: { grande: boolean; dashboard: boolean }) {
-  const usuario = await obtenerUsuario();
-  if (!usuario) return <Visitante grande={grande} />;
+  const perfil = await obtenerPerfil();
+  if (!perfil) return <Visitante grande={grande} />;
   if (grande) {
     return (
       <Link href="/dashboard" className={boton("primario", "grande")}>
@@ -51,7 +51,7 @@ async function SegunSesion({ grande, dashboard }: { grande: boolean; dashboard: 
           </Link>
         </span>
       )}
-      <MenuCuenta nombre={usuario.user_metadata?.full_name ?? ""} correo={usuario.email ?? ""} />
+      <MenuCuenta nombre={perfil.nombre} correo={perfil.correo} />
     </div>
   );
 }

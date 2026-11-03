@@ -1,21 +1,28 @@
 import "server-only";
-import { cache } from "react";
-import { connection } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { cacheLife, cacheTag } from "next/cache";
+import { obtenerUsuario } from "@/lib/sesion";
+import { clientePublico } from "@/lib/supabase/publico";
 
-export const obtenerUsuario = cache(async () => {
-  await connection();
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
-  return data.user;
-});
+export type Perfil = { nombre: string; correo: string };
 
-export const obtenerPerfil = cache(async (id: string) => {
-  const supabase = await createClient();
-  const { data } = await supabase
+export async function obtenerPerfil(): Promise<Perfil | null> {
+  const usuario = await obtenerUsuario();
+  if (!usuario) return null;
+  const nombre = await nombrePorId(usuario.id);
+  return { nombre, correo: usuario.correo };
+}
+
+// Sin exportar: el id sale siempre de la sesión, nunca de quien llama.
+async function nombrePorId(id: string) {
+  "use cache";
+  cacheTag(`perfil:${id}`);
+  cacheLife("hours");
+
+  const { data, error } = await clientePublico()
     .from("perfiles")
     .select("nombre_completo")
     .eq("id", id)
-    .single();
-  return data;
-});
+    .maybeSingle();
+  if (error) throw error;
+  return data?.nombre_completo ?? "";
+}

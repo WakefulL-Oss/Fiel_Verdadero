@@ -1,5 +1,6 @@
 "use server";
 
+import { refresh } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { rutaSegura } from "@/lib/ruta-segura";
@@ -210,6 +211,7 @@ export async function cambiarPassword(
 
 export async function cerrarSesion() {
   const supabase = await createClient();
-  await supabase.auth.signOut();
+  await supabase.auth.signOut({ scope: "local" });
+  refresh();
   redirect("/");
 }

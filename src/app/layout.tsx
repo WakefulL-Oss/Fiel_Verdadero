@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Lora, Roboto } from "next/font/google";
+import { SCRIPT_BARRA } from "@/lib/barra";
 import { SCRIPT_TEMA } from "@/lib/tema";
 import "./globals.css";
 
@@ -40,7 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${lora.variable} ${roboto.variable} h-full antialiased`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: SCRIPT_TEMA }} />
+        <script dangerouslySetInnerHTML={{ __html: SCRIPT_TEMA + SCRIPT_BARRA }} />
       </head>
       <body className="flex min-h-full flex-col">{children}</body>
     </html>

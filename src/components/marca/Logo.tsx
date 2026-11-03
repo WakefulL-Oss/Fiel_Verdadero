@@ -11,13 +11,18 @@ function Nombre({ className = "" }: { className?: string }) {
 
 export function Logo({ grande = false }: { grande?: boolean }) {
   return (
-    <Link
-      href="/"
-      aria-label="Fiel y Verdadero, inicio"
-      className="flex items-center gap-2"
-    >
+    <Link href="/" aria-label="Fiel y Verdadero, inicio" className="flex items-center gap-2">
       <Menora className={`h-8 w-auto text-foreground ${grande ? "sm:h-[38px]" : ""}`} />
       <Nombre className="text-xl sm:text-2xl" />
+    </Link>
+  );
+}
+
+export function LogoCompacto({ href = "/" }: { href?: string }) {
+  return (
+    <Link href={href} aria-label="Fiel y Verdadero, inicio" className="flex items-center gap-2">
+      <Menora className="h-6 w-auto text-foreground" />
+      <Nombre className="hidden text-sm sm:inline" />
     </Link>
   );
 }
