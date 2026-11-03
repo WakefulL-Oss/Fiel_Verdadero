@@ -44,7 +44,7 @@ Por qué: el navegador escribe en Supabase directo, así que cualquier usuario p
 2. **Renderizado:** un componente servidor recorre el JSON y mapea cada tipo permitido a su elemento; el texto va como nodo de texto (React lo escapa). Ante JSON inválido, falla cerrado (no muestra el contenido). El PDF consume el mismo JSON validado.
 3. **Enlaces:** solo `https:`, `http:` y `mailto:`; siempre `rel="noopener noreferrer nofollow ugc"`. Se rechaza `javascript:`, `data:` y similares.
 4. **Sin imágenes ni HTML incrustado** en el cuerpo. Las portadas viven en Storage (WebP, máx. 300 KB, tipo y tamaño forzados en la configuración del bucket).
-5. **Límites en la BD** (migración nueva): `check (jsonb_typeof(contenido) = 'object' and pg_column_size(contenido) < 200000)`. Límites de profundidad y de nodos en el esquema zod.
+5. **Límites en la BD:** contenido de tipo objeto y ≤ 1 MB por sermón, cuota de 50 MB por autor y 30 sermones nuevos al día (`LIMITES.md`). Límites de profundidad y de nodos en el esquema zod.
 6. **Capa extra:** la CSP bloquea `object-src`, `frame-ancestors` y orígenes no listados.
 
 Pendiente de implementar con el editor (paso 5 de `ESTADO.md`).
