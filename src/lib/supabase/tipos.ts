@@ -230,6 +230,39 @@ export type Database = {
           },
         ]
       }
+      sermon_vistas: {
+        Row: {
+          dia: string
+          perfil_id: string
+          sermon_id: string
+        }
+        Insert: {
+          dia?: string
+          perfil_id: string
+          sermon_id: string
+        }
+        Update: {
+          dia?: string
+          perfil_id?: string
+          sermon_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sermon_vistas_perfil_id_fkey"
+            columns: ["perfil_id"]
+            isOneToOne: false
+            referencedRelation: "perfiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sermon_vistas_sermon_id_fkey"
+            columns: ["sermon_id"]
+            isOneToOne: false
+            referencedRelation: "sermones"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       sermones: {
         Row: {
           actualizado_en: string
@@ -331,6 +364,7 @@ export type Database = {
         }
       }
       es_moderador: { Args: never; Returns: boolean }
+      es_url_https: { Args: { url: string }; Returns: boolean }
       incrementar_vistas: { Args: { p_slug: string }; Returns: undefined }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }

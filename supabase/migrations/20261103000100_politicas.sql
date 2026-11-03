@@ -4,7 +4,7 @@
 -- avatar en metadatos que controla quien se registra; si no es válido se descarta.
 create function public.es_url_https(url text) returns boolean
 language sql immutable as $$
-  select url ~ '^https://[^[:space:]]{1,500}$'
+  select url ~ '^https://[^[:space:]]+$' and char_length(url) <= 500
 $$;
 
 update perfiles set avatar_url = null
