@@ -35,7 +35,13 @@
 
 ## Pendiente (en orden)
 
-0. [ ] **Urgente:** aplicar `supabase/migrations/20261103000000_permisos_columnas.sql` (`npx supabase db push --linked`). Corrige que cualquier usuario pueda cambiarse el `rol` a admin (el `revoke` por columnas de la migración inicial no anulaba el `grant` de tabla), restringe columnas editables de `sermones`, oculta `rol` a lectores y añade el índice de borradores. Después: con un usuario normal, `update perfiles set rol='admin'` debe fallar.
+0. [ ] Aplicar `supabase/migrations/20261103000100_politicas.sql` (`npx supabase db push --linked`): avatar solo https, vistas una por usuario y día, portadas sin listado público y con `update`, reportes solo de sermones publicados. (`20261103000000_permisos_columnas.sql` ya está aplicada.)
+0b. [ ] **Límites de tamaño en la BD** (migración nueva). Hoy la validación de `schema.ts` solo protege nuestros formularios; la API de Supabase acepta llamadas directas con la clave pública. Añadir `check`:
+   - `perfiles`: `nombre_completo` 1–100, `iglesia` ≤ 150 (y truncar `full_name` en `handle_new_user`).
+   - `sermones`: `pasaje_texto` ≤ 300, `contenido` con `pg_column_size(contenido) <= 512000`, `portada_url` con `es_url_https`.
+   - `sermon_notas.notas` ≤ 50 000; `series.descripcion` ≤ 1000.
+   - Límite diario de borradores por autor (como el de publicaciones, en `sermones_before_write`), p. ej. 30.
+   - Limpiar `sermon_vistas` con más de 2 días (cron de `pg_cron` o al insertar).
 
 1. [ ] Crear el proyecto Supabase `fiel-dev`, apuntar `.env.local` a él y configurar Vercel *Preview* (`GUIA-CONFIGURACION.md`, sección 9). Hasta entonces `npm run dev` usa la BD de producción.
 2. [ ] Secrets de GitHub para el keep-alive y fusionar `fiel` en `main` para que el cron funcione.
