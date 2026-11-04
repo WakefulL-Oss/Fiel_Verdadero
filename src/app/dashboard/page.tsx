@@ -26,7 +26,9 @@ export default function Inicio() {
         <Suspense fallback={HUECO}>
           <CompositorUsuario />
         </Suspense>
-        <Recientes />
+        <Suspense fallback={<p className="text-sm text-tenue">…</p>}>
+          <Recientes />
+        </Suspense>
       </div>
       <aside className="hidden w-[18.75rem] shrink-0 xl:block">
         <Tarjeta
